@@ -5,13 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ba169f5-131e-4afc-ac4c-42e5ee1e464c" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/FunctionalInterfaceDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/ArrayListDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/CollectionsDemo.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/HashMapDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparableDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/EnumDemo/EnumExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GenericsDemo/Generic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GlobalUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Howtodoinjava/StringDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/InheritanceDemo/InheritanceDemoClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/OptionalClassesdemo/OptionalDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/CustomException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/MethodReferenceExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/SortingDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/StreamExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/CountNonRepeatingNumbers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/CountUniqueDigits.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/FindStringsSum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/MaxOfFrequency.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/ReverseNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/WeightOfString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/multithreading/ThreadDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Employee.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/EmployeeDataUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/InterfaceDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/corejava/Basics1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/corejava/ImmutableRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/corejava/PassByRefExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +55,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="Enum" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -46,14 +80,98 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Markdown&quot;
+    ]
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Application.HashMapDemo">
+    <configuration name="ArrayListDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Collections.ArrayListDemo" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Collections.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Generic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GenericsDemo.Generic" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GenericsDemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HashMapDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Collections.HashMapDemo" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Collections.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InheritanceDemoClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="InheritanceDemo.InheritanceDemoClass" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="InheritanceDemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OptionalDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="OptionalClassesdemo.OptionalDemo" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="OptionalClassesdemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HashMapDemo" />
+        <item itemvalue="Application.Generic" />
+        <item itemvalue="Application.InheritanceDemoClass" />
+        <item itemvalue="Application.OptionalDemo" />
+        <item itemvalue="Application.ArrayListDemo" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -70,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673403920755</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="First commit">
+      <created>1685417589365</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685417589365</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -19,6 +19,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        AbstractList list = new ArrayList();
+
+        System.out.println();
         System.out.println("Hello world!");
         FunctionalInterfaceDemo functionalInterfaceDemo = (n1,n2) -> {
             return n1 + n2;
@@ -95,7 +98,7 @@ public class Main {
         // Supplier
         // Supplier supplies / returns something
 
-        Supplier<String> stringPrivilegedAction = () -> "Supplier normal String";
+        Supplier<String> stringPrivilegedAction = () -> "Supplier normal StringDemo";
         Optional<String> stringOptional = Optional.ofNullable(null);
         stringOptional.orElse(stringPrivilegedAction.get());
 
