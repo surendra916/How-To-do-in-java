@@ -4,6 +4,13 @@ import java.util.*;
 import java.util.function.*;
 import java.util.stream.IntStream;
 
+/*
+* Why is String immutable in nature
+* Because it maintains a string constant pool where a string literal is being
+* referred by multiple instances, Thus if we change contents of one instance it would overwrite it for all other instances referring to it
+* All methods like toUpperCase(), toLowerCase(), etc., returns a new copy of the existing string literal not the actual string
+* */
+
 public class StringDemo {
 
     String name;
@@ -15,7 +22,7 @@ public class StringDemo {
         String blogName2 = new String("howtodoinjava.com");
         String blogName3 = new String("howtodoinjava.com");
 
-//        System.out.println(blogName1 == blogName2); // == checks fro referential equality
+//        System.out.println(blogName1 == blogName2); // == checks for referential equality
 //        System.out.println(blogName1.equals(blogName2)); // equals checks for contents of strings
 //
 //        System.out.println(blogName1.startsWith("w",3));
@@ -39,7 +46,7 @@ public class StringDemo {
 //
 //        String c = new String("howtodoinjava");
 //        System.out.println( a == c);// false => because object reference is in HEAP, and string literals obj ref is in string const pool
-
+//        But a.equals(c) gives because it checks for content equality.
         // "equals" checks the string contents
         // "==" checks for referential equality
         StringDemo stringDemo = null;

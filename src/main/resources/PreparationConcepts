@@ -1,0 +1,83 @@
+JAVA:
+(
+JAVA 8
+String constant pool & immutability,  programs & String builder & buffer
+comparator & Comparable
+Java sorting
+Streams in Java 8 & Java Collections
+Java Date & Time CCBP next wave cheat sheets
+Files library(reading, writing) try with resource etc..,
+Java Generic basics -> next wave CCBP
+Wrapper classes
+)
+
+Spring boot flow -> component scanning, auto config, annotation etc.,
+
+Bean Scopes
+
+Exception Handling -> Controller Advice and Handling Generic Exceptions
+
+Spring Data JPA -> Relationships like @OneToMany, etcc..
+
+Spring Data JPA Specifications using Predicates
+
+Fiegn Configuration for communication among services and Heistrix handling when fails
+
+Spring Cloud configuration -> configure configuration in VCS
+
+Service Registry using Eureka Server & Client pattern
+
+MapStruct for mapping DTO to Entity and vice-versa
+
+Spring Batch & Job Scheduling
+
+
+
+SPRING BOOT:
+Logging & levels
+Profiles using spring cloud as well as java configuration
+Maven & its lifecycle
+Bean lifecycle
+spring boot annotation
+Eureka & Service communication with Feign client & Error decoders in case of failures
+Spring cloud config server & client
+Spring Cloud gateway & Routing
+Spring security basics or with oKta (Durgesh & Daily code buffer)(CORS related also)
+Spring data JPA(method constructions & Native queries) & Specification classes
+Spring Batch & its programs
+Kafka basics
+
+
+Enums
+Reflection API
+Creating Immutable classes
+Singleton design pattern
+Factory design pattern
+
+DEVOPS tools:
+EDUREKA CLASSES
+
+
+
+
+
+
+Interview questions:
+=====================
+diff b/w @Controller & @RestController
+diff b/w @Id in Spring Data JPA
+multi module project
+Mapstruct for mapping
+logback.xml for logging
+maven
+diff b/w constructor & Field injection
+life cycle of a bean
+PostConstruct & CommandLineRunner
+
+
+
+
+
+
+
+

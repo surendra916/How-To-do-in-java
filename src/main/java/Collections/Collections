@@ -1,0 +1,139 @@
+Mostly we can create Collection Objects in 3 ways :
+
+Using default constructor
+By passing capacity
+By passing other collection.
+
+But Stack can only created with "default constructor"
+LinkedList cannot be created by passing initial capacity.
+
+Vector(C):
+implements List(I)
+
+Vector v = new Vector();
+During object creation itself the initial and default capacity are set to 10 if capacity is not passed
+to the constructor.
+
+Importing characteristics:
+------------------------------------------------------------------------------
+Default capacity: 10 -> increases its capacity by 100% (if initial is 10,
+ for 11th element addition then it increases to 20 which is 100% )
+Initial capacity: 10
+Allows duplicates : YES
+Allows null values : YES
+Maintains Insertion order: YES
+Maintains Sorted order: NO
+Random Access: YES (Can access any element in list at any index)
+Synchronized: YES // multiple threads cannot access at a time
+Good at? => In multithreaded apps and if data increases exponentially
+=================================================================================
+Vector<String> vec = new Vector();
+vec.capacity() // 10
+
+Vector<String> vec = new Vector(Arrays.asList("a","b","c","d","e")); // added five elements
+now vec.capacity() // 5
+
+String[] arr = { "a","b","c","d","e" };
+Vector<String> vec = new Vector(Arrays.asList(arr));
+vec.capacity() // 5 -> same as above
+
+
+
+
+ArrayList(C):
+Implements List(I):
+
+ArrayList arrList = new ArrayList();
+Default capacity( capacity when elements are not added to list) // 0
+capacity when elements are added to list// then 10
+ArrayList does not have capacity() method.
+increments its capacity by 50% after reaching its initial capacity.
+non synchronized so good in performance.
+
+
+
+Stack(C):
+work on LIFO principle
+Extended from Vector(C)
+extends all the functionality of VECTOR and adds additional functionality
+Stack can only be created as an EMPTY stack( cannot be created with INITIAL capacity or cannot pass any list)
+Stack has all methods of LIST as it is the implementor
+like add, set, get(0), contains("element"), remove(), etc.,
+
+STACK specific methods:
+----------------------
+push -> also same as add()
+pop -> Deletes and returns the TOP element.
+peek -> Just returns the TOP element.
+search -> SEARCHES the element from TOP.
+
+The TOP's value will start from 1
+For Ex: "Red", "White", "Blue"(LIFO)
+Blue -> 1
+White -> 2
+Red -> 3
+
+stack.search("Red"); // gives 3
+But stack.indexOf("Red") gives 0
+stack.peek(); // Blue
+stack.pop();// Blue ["Red", "White"]
+stack.push("Blue"); //["Red", "White", "Blue"]
+
+stack.empty() -> checks if stack is empty()// empty() method is from Stack(C)
+stack.isEmpty() -> same as above.
+
+STACK is good at LIFO based apps.
+like compiler level opening & closing of "{", "}"
+Undo Redo in any editor
+
+
+
+LinkedList(C):
+-------------
+
+       List(I)              DeQueue(I)
+        |                     |
+        |---------- | ---------|
+                    |
+                 LinkedList(C)
+
+Implements List, DeQueue interfaces
+So
+Queue list = new LinkedList();
+DeQueue list = new LinkedList();
+List list = new LinkedList();
+Collection list = new LinkedList();
+Iterable list = new LinkedList();
+LinkedList list = new LinkedList();
+
+LinkedList point of View(methods from List(I)):
+-----------------------------------------------
+
+Structure:
+-----------
+Node :
+---------
+Prev  Element/Item  Next
+
+Initially First node's "prev" and Last node's "next" will be "null"
+"Next" will point to next node's address
+
+If we want insert at specific position.
+
+If linked-list contains 10 size
+ll.set(2, "boom");// For this 10/2 = 5, and 2 is less than 5 so it searches the element from LEFT side, and that too from 0th position.
+but if index > 5 then searches the linked list from right side from last position.
+
+If you want clear the list, then ll.clear();
+It sets the first & last to null
+
+
+
+
+
+
+
+
+
+
+

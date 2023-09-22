@@ -1,0 +1,17 @@
+list(LinkedList, ArrayList, Vector)
+
+Convert list to ARRAY:
+String[] names = list.toArray();
+
+Print array as a STRING:
+Arrays.toString()
+
+To get synchronized list:
+-------------------------
+Collections.synchronizedList(list); -> gives synchronized version of any collection.
+
+
+Collections & Arrays:
+----------------------
+
+

@@ -4,48 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ba169f5-131e-4afc-ac4c-42e5ee1e464c" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/ArrayListDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/CollectionsDemo.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/HashMapDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/img_9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparableDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EnumDemo/EnumExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GenericsDemo/Generic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GlobalUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Howtodoinjava/StringDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/InheritanceDemo/InheritanceDemoClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/OptionalClassesdemo/OptionalDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/CustomException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/MethodReferenceExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/SortingDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/StreamExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/CountNonRepeatingNumbers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/CountUniqueDigits.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/FindStringsSum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/MaxOfFrequency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/ReverseNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/WeightOfString.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/multithreading/ThreadDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/EmployeeDataUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/InterfaceDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/corejava/Basics1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/corejava/ImmutableRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/corejava/PassByRefExample.java" afterDir="false" />
+    <list default="true" id="4ba169f5-131e-4afc-ac4c-42e5ee1e464c" name="Changes" comment="All commits">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/Collections" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/collection utitlities" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparatorDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Howtodoinjava/EqualityOfObjects.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/PreparationConcepts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/circuit_breaker.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/eureka_server.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring cloud config/config_server.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring cloud config/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring cloud config/img_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Collections/ArrayListDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Collections/ArrayListDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparableDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparableDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Howtodoinjava/StringDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Howtodoinjava/StringDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StreamsDemo/SortingDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/SortingDemo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +69,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/suren/Desktop/core java/src/main/resources&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
@@ -96,8 +80,19 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Application.HashMapDemo">
-    <configuration name="ArrayListDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\suren\Desktop\core java\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\suren\Desktop\core java\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Collections" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ComparableDemo">
+    <configuration name="Collections.ArrayListDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Collections.ArrayListDemo" />
       <module name="core java" />
       <extension name="coverage">
@@ -110,12 +105,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Generic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GenericsDemo.Generic" />
+    <configuration name="ComparableDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ComparableAndComparator.ComparableDemo" />
       <module name="core java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="GenericsDemo.*" />
+          <option name="PATTERN" value="ComparableAndComparator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ComparatorDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ComparableAndComparator.ComparatorDemo" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ComparableAndComparator.PlayersNameComparator" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EqualityOfObjects" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Howtodoinjava.EqualityOfObjects" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Howtodoinjava.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -128,33 +149,7 @@
       <module name="core java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Collections.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InheritanceDemoClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="InheritanceDemo.InheritanceDemoClass" />
-      <module name="core java" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="InheritanceDemo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OptionalDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="OptionalClassesdemo.OptionalDemo" />
-      <module name="core java" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="OptionalClassesdemo.*" />
+          <option name="PATTERN" value="Collections.ArrayListDemo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ComparableDemo" />
+        <item itemvalue="Application.EqualityOfObjects" />
+        <item itemvalue="Application.ComparatorDemo" />
+        <item itemvalue="Application.Collections.ArrayListDemo" />
         <item itemvalue="Application.HashMapDemo" />
-        <item itemvalue="Application.Generic" />
-        <item itemvalue="Application.InheritanceDemoClass" />
-        <item itemvalue="Application.OptionalDemo" />
-        <item itemvalue="Application.ArrayListDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -195,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685417589365</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="All commits">
+      <created>1691313839522</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691313839522</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,6 +213,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="All commits" />
+    <option name="LAST_COMMIT_MESSAGE" value="All commits" />
   </component>
 </project>
