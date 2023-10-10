@@ -1,3 +1,7 @@
+6 Qualities That Make a Great Team Player (https://www.indeed.com/career-advice/career-development/team-player-qualities)
+
+
+serialization in java (https://www.baeldung.com/java-marker-interfaces)
 JAVA:
 (
 JAVA 8
@@ -9,9 +13,12 @@ Java Date & Time CCBP next wave cheat sheets
 Files library(reading, writing) try with resource etc..,
 Java Generic basics -> next wave CCBP
 Wrapper classes
+Memory management in java(https://www.baeldung.com/java-memory-management-interview-questions)
 )
 
 Spring boot flow -> component scanning, auto config, annotation etc.,
+
+Spring boot actuator
 
 Bean Scopes
 
@@ -55,7 +62,7 @@ Singleton design pattern
 Factory design pattern
 
 DEVOPS tools:
-EDUREKA CLASSES
+EDUREKA CLASSES & ABhishek veeramalla youtube channel
 
 
 
@@ -64,6 +71,7 @@ EDUREKA CLASSES
 
 Interview questions:
 =====================
+Producer & Consumer problem in multi threading
 diff b/w @Controller & @RestController
 diff b/w @Id in Spring Data JPA
 multi module project

@@ -10,7 +10,7 @@ import java.util.Objects;
 * "equals" method is defined in the Object class so that every Java object inherits it. By default,
 * its implementation compares object memory addresses, so it works the same as the == operator.
 * However, we can override this method in order to define what equality means for our objects.
-* String, Wrapper classes and Date - Time classes implemented their own "equals" method to check for content equality.
+* String, Wrapper classes and Date - Time classes implemented/overridden their own "equals" method to check for content equality.
 * Same way we can also override the "equals" method in whatever way we want.
 *
 * */

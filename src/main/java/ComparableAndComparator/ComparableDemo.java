@@ -29,6 +29,10 @@ public class ComparableDemo {
         String collect = Arrays.stream(strArray)
                 .collect(Collectors.joining(","));
         System.out.println(collect);
+        Person person = new Person("","");
+        List<Person> list1 = new ArrayList<>();
+        list1.add(person);
+        Collections.sort(list1);
 
     }
 }

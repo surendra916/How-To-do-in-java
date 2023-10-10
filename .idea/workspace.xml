@@ -5,30 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ba169f5-131e-4afc-ac4c-42e5ee1e464c" name="Changes" comment="All commits">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/Collections" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/collection utitlities" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparatorDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Howtodoinjava/EqualityOfObjects.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/PreparationConcepts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/circuit_breaker.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/eureka_server.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eureka/img_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/spring cloud config/config_server.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/spring cloud config/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/spring cloud config/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Baeldung/UniqueElementCount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CodeUtils/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/CodeUtils/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DateAndTime/LocalDateDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DateAndTime/info.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/JavaEightFeatures.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Utils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Collections/ArrayListDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Collections/ArrayListDemo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparableDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparableDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Howtodoinjava/StringDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Howtodoinjava/StringDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/StreamsDemo/SortingDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/SortingDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparatorDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparatorDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Howtodoinjava/EqualityOfObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Howtodoinjava/EqualityOfObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/PreparationConcepts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PreparationConcepts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,42 +77,17 @@
       <recent name="C:\Users\suren\Desktop\core java\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="CodeUtils" />
       <recent name="Collections" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ComparableDemo">
-    <configuration name="Collections.ArrayListDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Collections.ArrayListDemo" />
-      <module name="core java" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Collections.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.JavaEightFeatures">
     <configuration name="ComparableDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ComparableAndComparator.ComparableDemo" />
       <module name="core java" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ComparableAndComparator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ComparatorDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ComparableAndComparator.ComparatorDemo" />
-      <module name="core java" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ComparableAndComparator.PlayersNameComparator" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -144,12 +108,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HashMapDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Collections.HashMapDemo" />
+    <configuration name="JavaEightFeatures" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StreamsDemo.JavaEightFeatures" />
       <module name="core java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Collections.ArrayListDemo.*" />
+          <option name="PATTERN" value="StreamsDemo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LocalDateDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DateAndTime.LocalDateDemo" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DateAndTime.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UniqueElementCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Baeldung.UniqueElementCount" />
+      <module name="core java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Baeldung.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -159,11 +149,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JavaEightFeatures" />
+        <item itemvalue="Application.UniqueElementCount" />
+        <item itemvalue="Application.LocalDateDemo" />
         <item itemvalue="Application.ComparableDemo" />
         <item itemvalue="Application.EqualityOfObjects" />
-        <item itemvalue="Application.ComparatorDemo" />
-        <item itemvalue="Application.Collections.ArrayListDemo" />
-        <item itemvalue="Application.HashMapDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -197,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691313839522</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="All commits">
+      <created>1695408255011</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695408255011</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

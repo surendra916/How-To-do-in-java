@@ -33,7 +33,7 @@ public class ComparatorDemo {
 //        Collections.sort(footballTeam, Comparator.comparingInt(Players::getRanking));   // ranking
 
 //********* But If class property is of WRAPPER or DATE-TIME. Then ************************************
-//        Collections.sort(footballTeam, (o1, o2) -> o1.getFavNum().compareTo(o2.getFavNum()));
+//        Collections.sort(footballTeam, (o1, o2) -> o1.getFavNum().compareTo(o2.getFavNum()));~
 //        Collections.sort(footballTeam, Comparator.comparing(Players::getFavNum));
 //        Collections.sort(footballTeam, Comparator.comparingLong(Players::getFavNum));
 //        Collections.sort(footballTeam, Comparator.comparingInt(Players::getFavNum));
