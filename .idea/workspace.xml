@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ba169f5-131e-4afc-ac4c-42e5ee1e464c" name="Changes" comment="All commits">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Baeldung/UniqueElementCount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CodeUtils/FileUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CodeUtils/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DateAndTime/LocalDateDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DateAndTime/info.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/JavaEightFeatures.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/StreamsDemo/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utils.java" afterDir="false" />
+    <list default="true" id="4ba169f5-131e-4afc-ac4c-42e5ee1e464c" name="Changes" comment="Java 8 practice">
+      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/CheckNumericBasedProgram.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparableDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparableDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparatorDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ComparableAndComparator/ComparatorDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Howtodoinjava/EqualityOfObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Howtodoinjava/EqualityOfObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CodeUtils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CodeUtils/FileUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/PreparationConcepts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PreparationConcepts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,13 +72,13 @@
       <recent name="Collections" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.JavaEightFeatures">
-    <configuration name="ComparableDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ComparableAndComparator.ComparableDemo" />
+  <component name="RunManager" selected="Application.CheckNumericBasedProgram">
+    <configuration name="CheckNumericBasedProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="codingexamples.CheckNumericBasedProgram" />
       <module name="core java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ComparableAndComparator.*" />
+          <option name="PATTERN" value="codingexamples.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -95,12 +86,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EqualityOfObjects" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Howtodoinjava.EqualityOfObjects" />
+    <configuration name="FileUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CodeUtils.FileUtils" />
       <module name="core java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Howtodoinjava.*" />
+          <option name="PATTERN" value="CodeUtils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -149,11 +140,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CheckNumericBasedProgram" />
+        <item itemvalue="Application.FileUtils" />
         <item itemvalue="Application.JavaEightFeatures" />
         <item itemvalue="Application.UniqueElementCount" />
         <item itemvalue="Application.LocalDateDemo" />
-        <item itemvalue="Application.ComparableDemo" />
-        <item itemvalue="Application.EqualityOfObjects" />
       </list>
     </recent_temporary>
   </component>
@@ -194,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695408255011</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Java 8 practice">
+      <created>1696960782119</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696960782119</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -211,6 +209,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="All commits" />
-    <option name="LAST_COMMIT_MESSAGE" value="All commits" />
+    <MESSAGE value="Java 8 practice" />
+    <option name="LAST_COMMIT_MESSAGE" value="Java 8 practice" />
   </component>
 </project>

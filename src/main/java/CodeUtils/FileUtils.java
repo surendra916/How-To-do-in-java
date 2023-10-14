@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,6 +45,50 @@ public class FileUtils {
     }
 
     public static void main(String[] args) {
-        readFiles();
+        //readFiles();
+        Employ employ1 = new Employ();
+        employ1.nickNames.add(new ArrayList<>(){{ add(1); add(2); }});
+        Employ employ2 = new Employ();
+        employ2.nickNames.add(new ArrayList<>(){{ add(3); add(4); }});
+        Employ employ3 = new Employ();
+        employ3.nickNames.add(new ArrayList<>(){{ add(5); add(6); }});
+
+        List<Employ> list =new ArrayList<>(){{ add(employ1); add(employ2); add(employ3);}};
+//        list.stream()
+//                .flatMap(emp -> emp.nickNames.stream().flatMap(n -> n.stream()))
+//                .forEach(System.out::println);
+
+        String str = "welcome to code decode and code decode welcome you";
+        Map<String, List<String>> collect = Arrays.stream(str.split(" "))
+                .collect(Collectors.groupingBy(Function.identity()));
+
+//        collect.forEach((word, occurrenceList) -> {
+//            System.out.print(word +" => "+ occurrenceList.size()+" ");//code => 2 and => 1 to => 1 decode => 2 welcome => 2 you => 1
+//        });
+
+        // For duplicate elements
+//        collect.forEach((word, occurrenceList) -> {
+//            if(occurrenceList.size() > 1){
+//                System.out.println(word);
+//            }
+//        });
+
+        // For Unique elements
+        collect.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().size() == 1)
+                .map(Map.Entry::getKey)
+                .forEach(System.out::println);
+
+    }
+}
+
+class Employ{
+
+    List<List<Integer>> nickNames = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

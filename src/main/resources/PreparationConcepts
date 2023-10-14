@@ -1,6 +1,3 @@
-6 Qualities That Make a Great Team Player (https://www.indeed.com/career-advice/career-development/team-player-qualities)
-
-
 serialization in java (https://www.baeldung.com/java-marker-interfaces)
 JAVA:
 (
@@ -17,25 +14,15 @@ Memory management in java(https://www.baeldung.com/java-memory-management-interv
 )
 
 Spring boot flow -> component scanning, auto config, annotation etc.,
-
 Spring boot actuator
-
 Bean Scopes
-
 Exception Handling -> Controller Advice and Handling Generic Exceptions
-
 Spring Data JPA -> Relationships like @OneToMany, etcc..
-
 Spring Data JPA Specifications using Predicates
-
 Fiegn Configuration for communication among services and Heistrix handling when fails
-
 Spring Cloud configuration -> configure configuration in VCS
-
 Service Registry using Eureka Server & Client pattern
-
 MapStruct for mapping DTO to Entity and vice-versa
-
 Spring Batch & Job Scheduling
 
 
@@ -81,6 +68,12 @@ maven
 diff b/w constructor & Field injection
 life cycle of a bean
 PostConstruct & CommandLineRunner
+
+
+Misc:
+----
+6 Qualities That Make a Great Team Player (https://www.indeed.com/career-advice/career-development/team-player-qualities)
+
 
 
 
