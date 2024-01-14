@@ -1,8 +1,7 @@
-package ComparableAndComparator;
+package EqualsComparableComparator;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.function.Function;
 
 /*
 * The Comparator interface defines a compare(arg1, arg2) method with two arguments that
@@ -23,17 +22,17 @@ public class ComparatorDemo {
 
 //        Collections.sort(footballTeam, new PlayerRankingComparator());
 //        Collections.sort(footballTeam, new PlayersAgeComparator());
-
-        // We can make use of Lambda here, Instead of creating a new class for each & every comparator
-//******** For primitive "long" property of class **********************************
+//        We can make use of Lambda here, Instead of creating a new class for each & every comparator
+// ******** For primitive "long" property of class **********************************
 //        Collections.sort(footballTeam, (o1, o2) -> Long.compare(o1.getAge(), o2.getAge()));   // age
 //        Collections.sort(footballTeam, Comparator.comparingLong(Players::getAge));   // age
-// ******** For primitive "int" property of class  ************************************
+// ******** For primitive "int" property of class ************************************
 //        Collections.sort(footballTeam, (o1, o2) -> Integer.compare(o1.getRanking(), o2.getRanking()));   // ranking
 //        Collections.sort(footballTeam, Comparator.comparingInt(Players::getRanking));   // ranking
 
 //********* But If class property is of WRAPPER or DATE-TIME. Then ************************************
 //        Collections.sort(footballTeam, (o1, o2) -> o1.getFavNum().compareTo(o2.getFavNum()));~
+//        Collections.sort(footballTeam, Comparator.comparing(pl -> pl.getFavNum()));
 //        Collections.sort(footballTeam, Comparator.comparing(Players::getFavNum));
 //        Collections.sort(footballTeam, Comparator.comparingLong(Players::getFavNum));
 //        Collections.sort(footballTeam, Comparator.comparingInt(Players::getFavNum));
@@ -79,6 +78,8 @@ public class ComparatorDemo {
                 .toArray(Players[]::new);
 
         Collections.sort(footballTeam, (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+
+        // If the prop is primitive we have to go with below approach
         footballTeam.stream()
                 .sorted((o1,o2) -> o1.getRanking() < o2.getRanking() ? -1 : (o1.getRanking() == o2.getRanking() ? 0 : 1));
         footballTeam.stream()

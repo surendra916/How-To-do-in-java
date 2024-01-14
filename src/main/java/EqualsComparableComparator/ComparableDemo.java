@@ -1,4 +1,4 @@
-package ComparableAndComparator;
+package EqualsComparableComparator;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -64,6 +64,6 @@ class Person implements Comparable<Person>{
         //return firstName.compareTo(o.firstName);// lexicographical comparison
         //return Long.compare(aLong, o.aLong); // For Long and similarly for all wrapper
         //return dob.compareTo(o.dob);// For LocalDate
-        return db.compareTo(o.db);// For Date
+        return this.db.compareTo(o.db);// For Date
     }
 }

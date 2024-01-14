@@ -1,0 +1,519 @@
+RUNNING JAVA APP FROM CLI:
+java -jar myJar.jar -Dspring.profiles.active=QA
+
+HOW TO PACKAGE JAR :
+We can package either in to JAR or WAR by mentioning as below
+
+<packaging>jar/war</packaging>
+
+Using Spring boot maven plugin:
+Ex:
+-----
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+
+
+ACTUATOR & ITS USES:
+Actuation gives us REST like response without actually adding any endpoints in our app
+
+Just add spring-boot-starter-actuator to POM file like below
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+Used for checking Health, metrics, beans information etc.,
+
+In application.properties:
+--------------------------
+management.endpoint.web.exposure.include=env
+
+Here we have multiple options to specify, below are some of them
+
+/env -> returns listing properties in app
+/health -> returns health of the app
+/auditevent -> returns auto-configuration related candidates
+/beans -> Returns list of all spring beans in our app
+/trace -> trace
+
+
+CORS: CROSS ORIGIN RESOURCE SHARING
+
+At controller level:
+------------------
+@CrossOrigin(origins="*", allowedHeaders="*")
+@RestController
+
+At endpoint level:
+------------------
+@CrossOrigin(origins="*", allowedHeaders="*")
+@GetMapping
+
+To Enable CORS for whole application:
+
+@Configuration
+@EnableWebMvc
+public class CorsConfig implements WebMvcConfigurer{
+    @override
+    public void addCors(CorsRegistry registry){
+        registry.addMapping("/**")
+                .allowedMethods("GET", "POST");
+    }
+}
+
+
+DIFF B/W @CONTROLLER & @RESTCONTROLLER
+
+RESTCONTROLLER = CONTROLLER + RESPONSEBODY
+
+If we just give @Controller
+Its not possible send raw JSON or XML formats directly, we also have to add @ResponseBody at method level
+
+@Controller
+@RequestMapping("/api")
+public class Sample{
+
+@GetMapping
+@ResponseBody
+public List<POJOOBJ> getPOJO(){
+}
+
+}
+
+But No need of doing it with @RestController.
+
+
+HOW TO CHANGE JAR filename:
+
+In the build section above maven plugins
+
+<finalName>custom-app</finalName>
+
+
+
+
+#Which is better for storing password ? char[] or String
+ans: char[]
+Explanation: If we store in STRING then it will be stored in STRING CONSTANT POOL(SCP). So, GARBAGE COLLECTOR(GC) will not go to SCP so frequently.
+For GC to perform cleanup activity, JVM needs to be restarted. So There's a high chance that STRING LITERAL stays longer in SCP
+resulting in SECURITY THREAT and can also access by people who have MEMORY DUMP ACCESS
+
+
+
+# MARKER INTERFACE
+Also called TAGGING INTERFACE.
+It's an interface with ZERO methods.
+It provides RUN-TIME TYPE INFORMATION about the objects in java so that COMPILER & JVM will be notified (or) will be aware of additional info about the object.
+if(obj instanceof Markerinterface){
+    // perform operations
+}
+
+Ex: AutoClosable and Cloneable are marker interfaces.
+classes support "Try with resources" must implement "AutoClosable" interface
+classes which implements Serializable supports serialization mechanism.
+classes which implements "Cloneable" interface supports cloning ex: Employee e = new Employee(); Employee clonedEmp = (Employee)e.clone();
+
+
+Diff b/w FAIL FAST and FAIL SAFE iterators:
+-------------------------------------------
+FAIL FAST:
+---------
+List list = new ArrayList();
+Iterator iterator = list.iterator();
+
+while(iterator.hasNext()){
+    sout(itr.next());
+    list.add("extra item"); // Throws CONCURRENT MODIFICATION EXCEPTION
+    // because the iterator maintains a MOD_COUNT, so if MOD_COUNT changes it throws the ERROR
+}
+
+FAIL SAFE:
+----------
+List list = new CopyOnWriteArrayList();
+Iterator iterator = list.iterator();
+while(iterator.hasNext()){
+    sout(itr.next());
+    list.add("extra"); // Does not throw error, even if MOD_COUNT is changes as this works on COPY of the list.
+}
+
+Examples are CopyOnWriteArrayList, CopyOnWriteArraySet, ConcurrentHashMap
+
+
+HOW TO MAKE SYNCHRONIZED LIST:
+-----------------------------
+Collections.synchronizedList(list);
+
+@Autowired:
+-----------
+
+Used for Dependency Injection.
+
+@Qualifier:
+----------
+
+If we have multiple implementations for a single INTERFACE
+
+Spring doesn't know which implementation to inject/consider, so it throws "Unsatisfied" dependency expressed through field <fieldname>
+
+so we use @Qualifier along with @Autowired
+
+@Autowired
+@Qualifier("beanname")
+
+
+INJECT Dynamic bean name:
+----------------------------
+
+In App.properties:
+------------------
+paymentBeanName= phonepe
+
+At class level use
+
+@Service
+@PropertySource("classpath:application.properties")
+public class PaymentServiceImpl{
+
+    @Resource( name = "${paymentBeanName}" ) // phonepe will be injected @Qualifier("${paymentBeanName}") -> will not work so go with @Resource
+    private Payment payment;
+
+}
+
+EXCEPTION HANDLING WITH CONTROLLER ADVICE:
+------------------------------------------
+
+@RestControllerAdvice
+public class ControllerAdviceDemo{
+
+       @ExceptionHandler(StudentNotFound.class)
+       public CustomErrorMessageDto handleStudentException(StudentNotFound snf){
+                CustomErrorMessageDto cemd = CustomErrorMessageDto.build(snf.getErrorMessage(),....);
+       }
+}
+
+
+@Value:
+-------
+
+app.props:
+mail.name = smptp
+mail.pwd = pwds
+
+In class, we can access as
+
+@Value("${mail.name}")
+private String name;
+
+@PropertySource:
+----------------
+
+The default property file which spring boot refers is application.properties file.
+But we can choose which file to be referred or from which file properties to be accessed.
+
+@Component
+@PropertySource("classpath: props/custom.properties")
+public class PropertySourceDemo{
+
+   @Value("${custom.mail}") // custom.mail will be referred from  "props/custom.properties" file
+   private String email;
+
+}
+
+
+@ConfigurationProperties:
+-------------------------
+If we have multiple properties, We can map all the properties to a DTO based on a "prefix"
+
+app.props:
+----------
+mail.name = ssr
+mail.email = ssr@gg.in
+
+@ConfigurationProperties(prefix="mail")
+public class ConfigPropsDemo{
+    private String name;
+    private String email;
+}
+
+
+@RequestBody:
+-------------
+
+Helps us in Deserializing and mapping json to java DTO/POJO for the input/payload coming from the client.
+
+VALIDATION USING @VALID:
+------------------------
+
+@NotNull(message= "Name cannot be null")
+@NotBlank
+@Email
+@Min(value = 10)
+@Max(value = 30)
+@Pattern(regExp="", message = "Invalid phone number")
+
+SPRING BOOT ADVANTAGES:
+-----------------------
+
+Dependency Resolution using spring boot starters
+Rapid Application Development
+Embedded Server(Tomcat)(Starter WEB contains TOMCAT server by default)
+We can also exclude default SERVER & configure a diff server also like below
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <exclusions>
+        <exclusion>spring-boot-starter-tomcat<exclusion>
+    </exclusions>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jetty</artifactId>
+</dependency>
+
+Actuator -> Gives REST like endpoints like /env, /health, /metrics, /beans out of the box just by adding spring boot actuator starter
+
+BEAN SCOPES:
+------------
+
+Scope = Singleton -> By default spring boot has it -> Only single object per IOC will be created & shared across app
+Scope = ProtoType -> New object gets created on every request.
+
+What does POM.XML CONTAIN:
+--------------------------
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.0.2</version>
+<parent>
+
+RUNNING JAVA APP:
+------------------
+mvn spring-boot:run -> This does not create a JAR in fact it goes directly to target/classes/MainApplication.java and executes it directly from there internally.
+
+
+
+@SpringBootApplication:
+-------------------------
+
+Spring boot scans all the packages which are aligned with "src" folder and its sub packages. But if the packages are external to our MainApp.java class
+those packages will not be scanned by default.
+
+we achieve it by @SpringBootApplication(scanBasePackages="com.business.common")
+
+Combination of @EnableAutoConfiguration, @SpringBootConfiguration & @ComponentScan
+
+@EnableAutoConfiguration: -> Internally it's a Configuration class
+------------------------------------------------------------------
+If we add "debug=true" in app.props file and start the app it shows "Positive matches" and "Negative Matches" in the console.
+"Positive matches":
+Positive matches are identified by classes which are available on classpath with @ConditionalOnClass(SomeClass.class)
+Ex:
+If SomeClass is available in our dependencies tree which are sub-dependencies downloaded as part of POM dependencies.
+These matched will be autoconfigured while negative are neglected.
+
+Scans all the dependencies in the POM, classpath and properties in app.properties and configures required functionality required for the app
+It allows registering of Configuration classes that we define in app ex: RestTemplate, Swagger, Security related etc.,
+
+For Ex:
+If we add spring-boot-starter-jpa
+
+Under Positive Matches:
+We will have "DataSourceAutoConfiguration.java" so If we go inside it, we'll have
+
+@ConditionalOnClass({ DataSource.class, EmbeddedDataType.class}) // For DataSourceAutoConfiguration.java Autoconfiguration will be
+enabled only if either of "DataSource.class, EmbeddedDataType.class" are present.
+@ConditionalOnMissing
+@EnableConfigurationProperties(DataSourceProperties.class) // Inside DataSourceProperties.java we'll have @ConfigurarionProperties(prefix="spring.dataSource")
+
+@ConditionalOnClass({ SomeClass.class, ....}) // Only if it is present, then autoconfigure
+@ConditionalOnMissing( { SomeClass.class,....})// Only if it is missing, then autoconfigure
+
+
+SPRING BOOT RUN METHOD INTERNALS:
+---------------------------------
+
+Creates ApplicationContext (Servlet/Reactive/Default)
+Creates a Banner
+Loads all annotated classes and
+starts Embedded Tomcat Server
+
+
+COMMANDLINERUNNER:
+-------------------
+
+It is a functional interface containing run() method
+Used for performing preprocessing logics like DB connections/ DB initial records insertion etc..,
+Will be executed after the SpringBootApplication.run() method.
+
+CREATING A BEAN:
+----------------
+
+-> Using @Component
+@Component
+public class UserService{}
+
+-> Using External configuration
+@Configuration
+public class UserService{
+
+    @Bean
+    public UserService userService(){ // userService bean will be created and will be maintained by SPRING
+        return new UserService();
+    }
+}
+
+STEREOTYPE ANNOTATIONS:
+------------------------
+@Component, @Service, @Repository, @Controller, @RestController etc..,
+
+
+DEPENDENCY INJECTION(DI):
+------------------------
+
+Key feature of Spring Framework.
+DI is a Design pattern in spring framework which helps in achieving loose coupling between classes.
+Injecting dependency in to a dependant class using @Autowired annotation. Thus, Spring handles creation its life cycle from creation to destruction.
+
+TYPES OF DI:
+-------------
+
+// Field level
+@Autowired
+Private UserService userService;
+
+// Setter DI
+@Autowired
+public void setUserService(UserService userService)
+{
+    this.userService = userService();
+}
+
+// Constructor DI
+@Autowired
+public UserService(UserService userService)
+{
+    this.userService = userService();
+}
+
+NOTE:
+-----
+With Constructor DI, If 2 beans are dependent on each other, then, "Circular Dependency" will occur
+So We use Setter DI along with @Lazy annotation
+
+
+COMMANDLINERUNNER ALTERNATIVE:
+--------------------------------
+
+@SpringBootApplication
+public class MainApp implements CommandLineRunner
+{
+    @PostConstruct
+    public void initDbQueries(){
+        sout("Inserted records in PostConstruct");
+    }
+
+    p s v m(String[] args){
+        sout("Main run()");
+    }
+
+    @Override
+    public void run(){
+        sout("command line runner run()");
+    }
+
+}
+
+O/p:
+Main run()
+Inserted records in PostConstruct
+command line runner run()
+
+ALTERNATIVE TO @VALUE:
+-----------------------
+
+@Autowired
+private Environment environment; // By Spring core
+
+sout(environment.getProperty("mail.username"));
+
+
+Difference b/w App.props & App.YML:
+-----------------------------------
+
+YML is more READABLE
+YML reduces boilerplate code
+
+LOAD EXTERNAL PROPERTIES:
+-------------------------
+
+In App.props:
+spring.config.import = file:/users/ssr/Desktop/test.properties
+
+@Configuration
+@ConfigurationProperties(prefix="spring.datasource")
+
+RESOLVE BEAN DEPENDENCY AMBIGUITY:
+-----------------------------------
+
+Using
+ @Qualifier("beanName") // Spring specific
+ @Resource(name = "beanName") // Directly by java
+ @Primary
+
+
+BEAN SCOPES:
+-----------
+
+Standalone & Web based:
+-----------------------
+Singleton: // Usage: @Scope("singleton")
+    Creates a single instance of bean for entire application context.
+    Default scope for Spring bean.
+    Single instance will be shared across all clients which requests it.
+    Ex:
+    ----
+    @Component
+    public class SingletonDemo
+    {
+        public SingletonDemo(){
+            sout("Singleton bean created!!!");
+        }
+    }
+
+    In MainApp.java:
+    ---------------
+    @SpringBootApplication
+    public class MainApp
+    {
+        p s v m(Str[] args){
+            ConfigurableApplicationContext context = SpringBootApplication.run();
+
+            SingletonDemo sd1 = context.getBean(SingletonDemo.class);
+            SingletonDemo sd2 = context.getBean(SingletonDemo.class);
+            SingletonDemo sd3 = context.getBean(SingletonDemo.class);
+            SingletonDemo sd4 = context.getBean(SingletonDemo.class);
+
+        }
+    }
+    O/p: Singleton bean created!!!
+    Note: Only one instance will be created.
+Prototype
+WebSocket
+
+Web based apps:
+--------------
+Request
+Session
+Application
+
+
+
+

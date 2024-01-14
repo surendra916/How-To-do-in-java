@@ -1,8 +1,7 @@
-package Howtodoinjava;
+package EqualsComparableComparator;
 
 import java.util.*;
 import java.util.function.*;
-import java.util.stream.IntStream;
 
 /*
 * Why is String immutable in nature

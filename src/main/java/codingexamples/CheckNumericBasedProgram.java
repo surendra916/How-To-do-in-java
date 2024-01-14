@@ -1,7 +1,9 @@
 package codingexamples;
 
-import java.util.*;
-import java.util.function.Function;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -16,15 +18,15 @@ public class CheckNumericBasedProgram {
         //System.out.println("Is Prime : "+checkIfPrime(2));
         //findCommonElementsFromTwoArrays();
         System.out.println(findLongestString(new String[]{ "abc", "wwww", "eeeeee", "iiiiiiiiii"}));
+        System.out.println("Sum is : "+sumOfFirstTenPrimeNumbers());
     }
 
-    public static double sumOfFirstTenPrimeNumbers(){
+    public static List<Integer> sumOfFirstTenPrimeNumbers(){
         return Stream.iterate(1, i -> i + 1)
                 .filter(CheckNumericBasedProgram::checkIfPrime)
-                .map(Math::sqrt)
                 .limit(10)
-                .mapToDouble(Double::doubleValue)
-                .sum();
+                .collect(Collectors.toList());
+
     }
 
     public static int sumOfNEvennumbers(int limit){

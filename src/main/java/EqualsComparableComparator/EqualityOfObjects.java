@@ -1,7 +1,4 @@
-package Howtodoinjava;
-
-import java.time.LocalDate;
-import java.util.Objects;
+package EqualsComparableComparator;
 
 /*
 * "==" is for referential equality. "equals" method checks for content Equality.

@@ -1,6 +1,8 @@
 package StreamsDemo;
 
 
+import graphql.org.antlr.v4.runtime.tree.Tree;
+
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
@@ -10,7 +12,20 @@ import java.util.stream.Stream;
 // Use list.stream().max(Comparator.reverseOrder()) for getting max of any list => reverseOrder() method is static so should be called directly with Comparator class name
 // Use list.stream().sorted(Comparator.reverseOrder())  => for normal lists of strings or integers (OR)
 // list.stream().sorted(Comparator.comparingDouble(Person::getSalary)) => For getting nth highest salary with classes
+
+/*
+*         Arrays.asList("").stream()
+                        .max(Comparator.comparing(Function.identity()));
+
+        Arrays.asList("").stream()
+                        .max(Comparator.naturalOrder());
+
+        Arrays.asList("").stream()
+                        .max((o1,o2)-> o1.compareToIgnoreCase(o2));
+* */
 public class JavaEightFeatures {
+
+
 
     static Supplier<Stream<String>> supplier = ()->{
         List<String> memberNames = new ArrayList<>();
@@ -31,28 +46,42 @@ public class JavaEightFeatures {
         //supplier.get().collect(Collectors.toSet()).forEach(System.out::println);
         supplier.get().collect(Collectors.toMap(s -> s, s-> s.length()));
         supplier.get().collect(Collectors.toMap(Function.identity(), s-> s.length()));// same as above
+        supplier.get().collect(Collectors.toMap(Function.identity(), String::length));
         // Other than list, set and Map
         supplier.get().collect(Collectors.toCollection(LinkedList::new));
-        supplier.get().collect(Collectors.toCollection(LinkedHashSet::new));
+        supplier.get().collect(Collectors.toCollection(LinkedHashSet::new)); // We can use this in case of preserving order
         supplier.get().collect(Collectors.toCollection(Vector::new));
         supplier.get().collect(Collectors.toCollection(ArrayDeque::new));
 
 
+        // ********************************* Collectors with 3 parameters *********************************
+
+        TreeMap<String, Set<Person>> treeParam = getPersonsList().stream()
+                .collect(Collectors.groupingBy(Person::getDepartment, TreeMap::new, Collectors.toSet()));
+        // OR
+        TreeMap<String, HashSet<Person>> collect1 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(Person::getDepartment, () -> new TreeMap<>(), Collectors.toCollection(HashSet::new)));
+
+        getPersonsList().stream().collect(Collectors.groupingBy(Person::getGender, TreeMap::new, Collectors.toCollection(HashSet::new)));
+
         // Function.identity() is a short-circuit operator which accepts and returns same value.
-//      //Function<String, String> identity = Function.identity();
+        //Function<String, String> identity = Function.identity();
 //      //System.out.println(identity.apply("Surendra"))////
 //      supplier.get().collect(Collectors.toMap(name -> name, String::length));
 //      //supplier.get().distinct().collect(Collectors.toMap(Function.identity(), String::length));// name -> name,is replaced with Function.identity()
 
         supplier.get().collect(Collectors.joining(" @ ", "[", "]"));// [ssr @ ffg @ hhj]
-
         List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
+        integers.stream().mapToInt(Integer::intValue).max().getAsInt();
+        integers.stream().min(Comparator.naturalOrder());
+        integers.stream().max(Comparator.naturalOrder());// for max
         Integer sum = integers.stream().mapToInt(Integer::intValue).sum();
+        integers.stream().sorted();
                 //.reduce(0, (a, b) -> a + b);
 
         integers.stream()
-                .max(((o1, o2) -> Integer.compare(o1,o2)));
-        integers.stream().max(Comparator.reverseOrder());
+                .max(Integer::compareTo);
+        integers.stream().max(Comparator.naturalOrder());
 
         integers.stream()
                 .max((o1, o2)-> o1.compareTo(o2));
@@ -69,8 +98,9 @@ public class JavaEightFeatures {
         integers.stream()
                 .mapToInt(Integer::valueOf)
                 .max();
+
         Optional<Integer> collect = integers.stream()
-                .collect(Collectors.maxBy(Comparator.reverseOrder()));
+                .collect(Collectors.maxBy(Comparator.naturalOrder()));
 
         // Get min / max values by Comparator.compare, Comparator.compareTo(which internally uses compare()), Integer::max, Integer::min
 
@@ -106,7 +136,6 @@ public class JavaEightFeatures {
         supplier.get()
                 .sorted(String::compareToIgnoreCase);
 
-
         // Get The Highest salary
         Optional<Person> max = getPersonsList().stream()
                 .max(Comparator.comparingDouble(Person::getSalary));
@@ -127,7 +156,7 @@ public class JavaEightFeatures {
                 .sorted(Comparator.comparingDouble(Person::getSalary).reversed())
                 .skip(3)
                 .findFirst()
-                .map(person -> person.getSalary());
+                .map(Person::getSalary);
 
         Integer integer = aDouble.map(Double::intValue).orElse(0);
 
@@ -143,6 +172,8 @@ public class JavaEightFeatures {
                 .filter(predicate1.and(predicate2))
                 .forEach(System.out::println);
 
+        getPersonsList().stream()
+                        .min(Comparator.comparing(Person::getName));
         Arrays.asList("abc").stream().sorted(Comparator.comparing(Function.identity()));
         Arrays.asList(1,2).stream().sorted(Comparator.comparing(Function.identity()));
 
@@ -155,8 +186,41 @@ public class JavaEightFeatures {
         Map<String, Long> map = getPersonsList().stream()
                 .collect(Collectors.groupingBy(Person::getGender, Collectors.counting()));
 
-        System.out.println(map); // { M = 2, F = 2}
+        // Find average salary of males & Female - PART 1
+        getPersonsList().stream()
+                .collect(Collectors.groupingBy(Person::getGender, Collectors.averagingDouble(Person::getSalary)));
 
+        // Find average salary of males & Female - PART 2
+        Map<String, Double> collect13 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(Person::getGender, Collectors.collectingAndThen(
+                        Collectors.toList(),
+                        list -> list.stream().collect(Collectors.averagingDouble(Person::getSalary))
+                )));
+
+        // Get min salaried in both men & women
+        getPersonsList().stream().collect(Collectors.groupingBy(
+                Person::getGender,
+                Collectors.minBy(Comparator.comparingDouble(Person::getSalary))
+                ));
+
+        // Get 2nd least salaried => gender wise
+        getPersonsList().stream()
+                .collect(Collectors.groupingBy(
+                        Person::getGender,
+                        Collectors.collectingAndThen(
+                                Collectors.toCollection(ArrayList::new),
+                                arrayList -> arrayList.stream()
+                                        .sorted(Comparator.comparing(Person::getSalary)) // can also use comparing double
+                                        .skip(1)
+                                        .findFirst()
+                                        .get()
+                        )
+                ));
+
+        TreeMap<String, Long> collect16 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(p -> p.getGender(), TreeMap::new, Collectors.counting()));
+
+        System.out.println(map); // { M = 2, F = 2}
 
         // Minimum salaried person
         getPersonsList().stream()
@@ -173,6 +237,56 @@ public class JavaEightFeatures {
                 .map(Person::getName)
                 .orElse("Default");
 
+        // 3rd minimum salaried in each department
+        Map<String, Person> collect19 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(
+                        p -> p.getDepartment(),
+                        Collectors.collectingAndThen(
+                                Collectors.toCollection(ArrayList::new),
+                                arrayList -> arrayList.stream()
+                                        .sorted(Comparator.comparingDouble(Person::getSalary))
+                                        .skip(2)
+                                        .findFirst()
+                                        .get()
+                        )
+                ));
+
+        // 3rd minimum salaried in each department gender wise - Part1
+        Map<String, Map<String, Person>> collect20 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(
+                        Person::getDepartment,
+                        Collectors.collectingAndThen(
+                                Collectors.toUnmodifiableList(),
+                                list -> list.stream()
+                                        .collect(Collectors.groupingBy(
+                                                Person::getGender,
+                                                Collectors.collectingAndThen(
+                                                        Collectors.toCollection(ArrayList::new),
+                                                        arrayList -> arrayList.stream()
+                                                                .sorted(Comparator.comparingDouble(Person::getSalary))
+                                                                .skip(2)
+                                                                .findFirst()
+                                                                .get()
+                                                )
+                                        ))
+                        )
+        ));
+
+        // 3rd minimum salaried in each department gender wise - Part2
+        Map<String, Map<String, List<Person>>> groupedByDeptAndGender = getPersonsList().stream().collect(Collectors.groupingBy(
+                Person::getDepartment,
+                Collectors.groupingBy(Person::getGender, Collectors.toCollection(ArrayList::new))
+        ));
+        groupedByDeptAndGender.forEach((department, genderGroupedMap)->{
+            genderGroupedMap.forEach((gender, list) -> {
+                Person person1 = list.stream().sorted(Comparator.comparingDouble(Person::getSalary))
+                        .skip(2)
+                        .findFirst().get();
+                System.out.println("3rd min salaried person from dept: "+ department + "is "+ person1.getName() + " and their gender is "+person1.getGender());
+            });
+        });
+
+
         // Maximum salaried
         getPersonsList().stream()
                         .sorted(Comparator.comparingDouble(Person::getSalary).reversed())
@@ -182,7 +296,6 @@ public class JavaEightFeatures {
                         .max(Comparator.comparingDouble(Person::getSalary))
                                 .get().getName();
 
-
         getPersonsList().stream()
                 .max(Comparator.comparingDouble(Person::getSalary))
                 .get().getName();
@@ -191,6 +304,35 @@ public class JavaEightFeatures {
         getPersonsList().stream()
                 .max(Comparator.comparingInt(Person::getAge))
                 .get().getName();
+
+        // Elder person gender wise
+        Map<String, Optional<Person>> collect21 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(
+                        Person::getGender,
+                        Collectors.maxBy(Comparator.comparingInt(Person::getAge))
+                ));
+
+        // Elder in each dept
+        Map<String, Optional<Person>> collect22 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(
+                        p -> p.getDepartment(),
+                        Collectors.maxBy(Comparator.comparingInt(P -> P.getAge()))
+                ));
+
+        // Elder male and female in each department
+        Map<String, Map<String, List<Person>>> collect23 = getPersonsList().stream()
+                .collect(
+                        Collectors.groupingBy(
+                                p -> p.getDepartment(),
+                                Collectors.groupingBy(Person::getGender)
+                        )
+                );
+        collect23.forEach((dept, genderWiseMap)->{
+            genderWiseMap.forEach((gender, list)->{
+                Person person1 = list.stream().max(Comparator.comparingInt(Person::getAge)).get();
+                System.out.println("Eldest person from dept: "+ dept + "is "+ person1.getName() + " and their gender is "+person1.getGender());
+            });
+        });
 
         getPersonsList().stream()
                 .sorted(Comparator.comparingInt(Person::getAge).reversed())
@@ -205,6 +347,16 @@ public class JavaEightFeatures {
                 .collect(Collectors.groupingBy(Person::getGender, Collectors.averagingDouble(Person::getSalary)));
 
         getPersonsList().stream().collect(Collectors.groupingBy(Person::getGender, Collectors.summingDouble(Person::getSalary)));
+
+        // 2nd highest salaried person in each department
+        Map<String, Person> collect18 = getPersonsList().stream().collect(Collectors.groupingBy(Person::getDepartment, Collectors.collectingAndThen(
+                Collectors.toList(),
+                list -> list.stream()
+                        .sorted(Comparator.comparingDouble(Person::getSalary).reversed())
+                        .skip(1)
+                        .findFirst()
+                        .get()
+        )));
 
         // 2nd highest salary in IT department
         getPersonsList().stream().filter(ps -> ps.getDepartment().equalsIgnoreCase("IT"))
@@ -254,7 +406,7 @@ public class JavaEightFeatures {
                 ));
 
         //Find maximum salaried from each department
-        getPersonsList().stream()
+        Map<String, Optional<Person>> collect17 = getPersonsList().stream()
                 .collect(Collectors.groupingBy(Person::getDepartment,
                         Collectors.collectingAndThen(
                                 Collectors.toList(),
@@ -263,7 +415,9 @@ public class JavaEightFeatures {
                         )));
 
         Map<String, Optional<Person>> maxSalariedPersonsMap = getPersonsList().stream()
-                .collect(Collectors.groupingBy(Person::getDepartment, Collectors.maxBy(Comparator.comparingDouble(Person::getSalary))));
+                .collect(Collectors.groupingBy(Person::getDepartment, Collectors.maxBy(
+                        Comparator.comparingDouble(Person::getSalary)
+                )));
 
         maxSalariedPersonsMap.forEach((departmentName, personOptional)-> {
             personOptional.ifPresent(person1 -> {
@@ -373,7 +527,14 @@ public class JavaEightFeatures {
                 .limit(5)
                 .collect(Collectors.toList());
 
-         Arrays.asList("Thanks for such amazing videos brother these are very helpful".split(" "))
+
+        TreeMap<String, Set<Person>> collect15 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(Person::getDepartment, TreeMap::new, Collectors.toSet()));
+
+        Map<String, DoubleSummaryStatistics> collect14 = getPersonsList().stream()
+                .collect(Collectors.groupingBy(Person::getDepartment, Collectors.summarizingDouble(Person::getSalary)));
+
+        Arrays.asList("Thanks for such amazing videos brother these are very helpful".split(" "))
         .stream()
         .collect(Collectors.groupingBy(String::length))
         .entrySet()
@@ -628,6 +789,9 @@ public class JavaEightFeatures {
     }
 
     public static void main(String[] args) {
+        System.out.println(Arrays.asList(1,2,7,3,9,54,12)
+                .stream()
+                .max(Comparator.naturalOrder()).get());
 
         FunctionalInterfaceDemos1 functionalInterfaceDemos = JavaEightFeatures::wish;
         functionalInterfaceDemos.greet();
@@ -652,7 +816,7 @@ public class JavaEightFeatures {
         functionalInterfaceDemos2.add(2,3);
 
         //streamsDemo();
-        collectorsDemo();
+        //collectorsDemo();
        // In java "PemGen" is replaced with "MetaSpace" because it has no size restrictions or
         // can dynamically increase size for storing classes
        // These are the memory areas java uses to store classes
