@@ -1,7 +1,12 @@
 package EqualsComparableComparator;
 
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.Objects;
+
 /*
-* "==" is for referential equality. "equals" method checks for content Equality.
+* "==" is for (referential/address) equality. "equals" method checks for content Equality.
 * For existing object instances like "String" and "wrapper classes" and
 * "Date-Time" classes ".equals" compares the content equality.
 * "equals" method is defined in the Object class so that every Java object inherits it. By default,
@@ -15,6 +20,13 @@ public class EqualityOfObjects {
     public static void main(String[] args) {
         Integer a = new Integer(1);
         Integer b = new Integer(1);
+
+        Integer c = Integer.valueOf(10);
+        Integer d = Integer.valueOf(10);
+
+
+        System.out.println(c == d);// true
+        System.out.println(c.equals(d)); //true
 
 //        if (a.equals(b)){ // True
 //            System.out.println("Equal");
@@ -30,9 +42,12 @@ public class EqualityOfObjects {
 //        Objects.requireNonNull(a); // returns passed object if not null, Throws NullPointerException if NULL
 
         // Instead of using a == b, we can use below as well
-//        if(Objects.equals(a,b)){
-//            System.out.println("Equals");
-//        }
+        // Even if in case 1 variable is null then we don't have to check the nullability.
+        // String a =  null;
+        // String b =  "Hello"; Objects.equals(a,b) => Very handy to use.
+        if(Objects.equals(a,b)){  // (a == b) || (a != null && a.equals(b));
+            System.out.println("Equals");
+        }
 
 //        String s1 = "Hai";
 //        String s2 = "Hai";
@@ -40,12 +55,12 @@ public class EqualityOfObjects {
 //        System.out.println(s1 == s2); // True
 //        System.out.println(s1.equals(s2)); // True
 
+        // Above statements are true only in String but not in other DATE-TIME (or) WRAPPER classes
+        // Because it has a concept of String pool
 //        String s3 = new String("sss");
 //        String s4 = new String("sss");
 //        System.out.println(s3 == s4);//false
 //        System.out.println(s3.equals(s4));// True
-        // Above statements are true only in String but not in other DATE-TIME (or) WRAPPER classes
-        // Because it has a concept of String pool
 
        // ************************************************************************************************************************************************
        // Alternative to Integer num1 = new Integer(1) => deprecated because it is overhead for java to create multiple wrappers thus degrades memory & performance
@@ -71,7 +86,7 @@ public class EqualityOfObjects {
 //        String s1 = new String("sss");
 //        String s2 = new String("sss");
 //        // s1 == s2 // False because referential equality(Addresses are different)
-//        // s1.equals(s2) // True => Content equality
+//        // s1.equals(s2) // True => Content equality because equals and hashcode is being overridden
 //        // Instead of above we can go with String.valueOf()
 
 //        String s3 = String.valueOf("ss");

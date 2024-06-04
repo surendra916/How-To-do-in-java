@@ -38,7 +38,7 @@ Here we have multiple options to specify, below are some of them
 
 /env -> returns listing properties in app
 /health -> returns health of the app
-/auditevent -> returns auto-configuration related candidates
+/auditevent -> returns autoconfiguration related candidates
 /beans -> Returns list of all spring beans in our app
 /trace -> trace
 

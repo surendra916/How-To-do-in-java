@@ -24,7 +24,7 @@ public class ComparableDemo {
         //Collections.sort(list, Collections.reverseOrder());
         System.out.println(String.join("*",list));
 
-        String[] strArray = {"abc", "def", "ghi", "jkl", "mno", "pqr"};
+        String[] strArray = { "abc", "def", "ghi", "jkl", "mno", "pqr" };
         Arrays.sort(strArray);
         String collect = Arrays.stream(strArray)
                 .collect(Collectors.joining(","));
@@ -33,7 +33,6 @@ public class ComparableDemo {
         List<Person> list1 = new ArrayList<>();
         list1.add(person);
         Collections.sort(list1);
-
     }
 }
 

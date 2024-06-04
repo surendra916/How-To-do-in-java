@@ -28,7 +28,7 @@ public class ComparatorDemo {
 //        Collections.sort(footballTeam, Comparator.comparingLong(Players::getAge));   // age
 // ******** For primitive "int" property of class ************************************
 //        Collections.sort(footballTeam, (o1, o2) -> Integer.compare(o1.getRanking(), o2.getRanking()));   // ranking
-//        Collections.sort(footballTeam, Comparator.comparingInt(Players::getRanking));   // ranking
+        Collections.sort(footballTeam, Comparator.comparingInt(Players::getRanking));   // ranking
 
 //********* But If class property is of WRAPPER or DATE-TIME. Then ************************************
 //        Collections.sort(footballTeam, (o1, o2) -> o1.getFavNum().compareTo(o2.getFavNum()));~
@@ -72,6 +72,7 @@ public class ComparatorDemo {
         footballTeam.stream().sorted(Comparator.comparing(Players::getAge));
         footballTeam.stream().sorted(Comparator.comparingLong(Players::getAge).reversed());
         footballTeam.stream().sorted(Comparator.comparingLong(Players::getAge).thenComparingLong(Players::getRanking).reversed());
+
 
         Players[] players = footballTeam.stream()
                 .sorted(Comparator.comparing(Players::getAge))

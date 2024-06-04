@@ -1,8 +1,6 @@
 package StreamsDemo;
 
 
-import graphql.org.antlr.v4.runtime.tree.Tree;
-
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.Collectors;
@@ -13,7 +11,7 @@ import java.util.stream.Stream;
 // Use list.stream().sorted(Comparator.reverseOrder())  => for normal lists of strings or integers (OR)
 // list.stream().sorted(Comparator.comparingDouble(Person::getSalary)) => For getting nth highest salary with classes
 
-/*
+/**
 *         Arrays.asList("").stream()
                         .max(Comparator.comparing(Function.identity()));
 
@@ -789,6 +787,11 @@ public class JavaEightFeatures {
     }
 
     public static void main(String[] args) {
+
+        FuncInterfaceDemo funcInterfaceDemo = () -> System.out.println("Hello!");
+
+        int add = FuncInterfaceDemo.add();
+
         System.out.println(Arrays.asList(1,2,7,3,9,54,12)
                 .stream()
                 .max(Comparator.naturalOrder()).get());
