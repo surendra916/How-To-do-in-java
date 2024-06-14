@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 public class ComparableDemo {
 
 
+
     public static void main(String[] args) {
 
         // Sorting in DESCENDING ORDER
@@ -33,6 +34,7 @@ public class ComparableDemo {
         List<Person> list1 = new ArrayList<>();
         list1.add(person);
         Collections.sort(list1);
+
     }
 }
 

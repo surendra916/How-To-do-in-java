@@ -1,4 +1,4 @@
-package CodeUtils;
+package Collections.CodeUtils;
 
 import java.io.File;
 import java.io.IOException;

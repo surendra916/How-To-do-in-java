@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ba169f5-131e-4afc-ac4c-42e5ee1e464c" name="Changes" comment="Java 8 practice">
-      <change afterPath="$PROJECT_DIR$/src/main/java/codingexamples/CheckNumericBasedProgram.java" afterDir="false" />
+    <list default="true" id="4ba169f5-131e-4afc-ac4c-42e5ee1e464c" name="Changes" comment="Java 8 practice -- 3">
+      <change afterPath="$PROJECT_DIR$/src/main/java/A_SPRING_BOOT_INTERVIEW_QA/DiamondProblem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/A_SPRING_BOOT_INTERVIEW_QA/FunctionalInterfaceDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Collections/CodeUtils/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CodeUtils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CodeUtils/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/PreparationConcepts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PreparationConcepts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/A_SPRING_BOOT_INTERVIEW_QA/interview_QA.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/A_SPRING_BOOT_INTERVIEW_QA/interview_QA.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CodeUtils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Collections/CodeUtils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CodeUtils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Collections/CodeUtils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DateAndTime/LocalDateDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DateAndTime/LocalDateDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EqualsComparableComparator/ComparableDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EqualsComparableComparator/ComparableDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EqualsComparableComparator/ComparatorDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EqualsComparableComparator/ComparatorDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EqualsComparableComparator/EqualityOfObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EqualsComparableComparator/EqualityOfObjects.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +79,7 @@
       <recent name="Collections" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CheckNumericBasedProgram">
+  <component name="RunManager" selected="Application.Student">
     <configuration name="CheckNumericBasedProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="codingexamples.CheckNumericBasedProgram" />
       <module name="core java" />
@@ -86,12 +93,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CodeUtils.FileUtils" />
+    <configuration name="ComparableDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="EqualsComparableComparator.ComparableDemo" />
       <module name="core java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="CodeUtils.*" />
+          <option name="PATTERN" value="EqualsComparableComparator.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,12 +119,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LocalDateDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DateAndTime.LocalDateDemo" />
+    <configuration name="Myclass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="corejava.Myclass" />
       <module name="core java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="DateAndTime.*" />
+          <option name="PATTERN" value="corejava.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -125,12 +132,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UniqueElementCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Baeldung.UniqueElementCount" />
+    <configuration name="Student" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Collections.CodeUtils.Student" />
       <module name="core java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Baeldung.*" />
+          <option name="PATTERN" value="Collections.CodeUtils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -140,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Student" />
+        <item itemvalue="Application.Myclass" />
+        <item itemvalue="Application.ComparableDemo" />
         <item itemvalue="Application.CheckNumericBasedProgram" />
-        <item itemvalue="Application.FileUtils" />
         <item itemvalue="Application.JavaEightFeatures" />
-        <item itemvalue="Application.UniqueElementCount" />
-        <item itemvalue="Application.LocalDateDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -192,7 +199,28 @@
       <option name="project" value="LOCAL" />
       <updated>1696960782119</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Java 8 practice --">
+      <created>1697259149665</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697259149665</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Java 8 practice -- 2">
+      <created>1705263520798</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705263520798</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Java 8 practice -- 3">
+      <created>1717492105763</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1717492105763</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,6 +238,9 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="All commits" />
     <MESSAGE value="Java 8 practice" />
-    <option name="LAST_COMMIT_MESSAGE" value="Java 8 practice" />
+    <MESSAGE value="Java 8 practice --" />
+    <MESSAGE value="Java 8 practice -- 2" />
+    <MESSAGE value="Java 8 practice -- 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Java 8 practice -- 3" />
   </component>
 </project>

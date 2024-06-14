@@ -2,6 +2,7 @@ package EqualsComparableComparator;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
@@ -13,17 +14,17 @@ import java.util.Objects;
 * its implementation compares object memory addresses, so it works the same as the == operator.
 * However, we can override this method in order to define what equality means for our objects.
 * String, Wrapper classes and Date - Time classes implemented/overridden their own "equals" method to check for content equality.
-* Same way we can also override the "equals" method in whatever way we want.
+* Same way we can also override the "equals" method in our user defined objects in whatever way we want.
 *
 * */
 public class EqualityOfObjects {
     public static void main(String[] args) {
+
         Integer a = new Integer(1);
         Integer b = new Integer(1);
 
         Integer c = Integer.valueOf(10);
         Integer d = Integer.valueOf(10);
-
 
         System.out.println(c == d);// true
         System.out.println(c.equals(d)); //true

@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 // Go to next wave java miscellaneous section
 public class LocalDateDemo {
     public static void main(String[] args) {
-        LocalDate localDate = LocalDate.of(2023, Month.APRIL, 15);
+        LocalDate localDate = LocalDate.of(2023, Month.DECEMBER, 15);
         System.out.println(localDate);
 
         System.out.println(localDate.getYear());
@@ -39,5 +39,6 @@ public class LocalDateDemo {
         DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd MMMM yyyy");
         String formattedDate = now.format(format2);
         System.out.println(formattedDate);
+
     }
 }

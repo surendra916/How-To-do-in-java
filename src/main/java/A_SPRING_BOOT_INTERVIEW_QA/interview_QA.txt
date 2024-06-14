@@ -1,5 +1,5 @@
 RUNNING JAVA APP FROM CLI:
-java -jar myJar.jar -Dspring.profiles.active=QA
+java -jar sample.jar -Dspring.profiles.active=QA
 
 HOW TO PACKAGE JAR :
 We can package either in to JAR or WAR by mentioning as below
@@ -22,7 +22,7 @@ Ex:
 ACTUATOR & ITS USES:
 Actuation gives us REST like response without actually adding any endpoints in our app
 
-Just add spring-boot-starter-actuator to POM file like below
+Just add "spring-boot-starter-actuator" to POM file like below
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-actuator</artifactId>
@@ -59,7 +59,7 @@ To Enable CORS for whole application:
 
 @Configuration
 @EnableWebMvc
-public class CorsConfig implements WebMvcConfigurer{
+public class CorsConfig implements WebMvcCon figurer{
     @override
     public void addCors(CorsRegistry registry){
         registry.addMapping("/**")
@@ -118,6 +118,38 @@ Ex: AutoClosable and Cloneable are marker interfaces.
 classes support "Try with resources" must implement "AutoClosable" interface
 classes which implements Serializable supports serialization mechanism.
 classes which implements "Cloneable" interface supports cloning ex: Employee e = new Employee(); Employee clonedEmp = (Employee)e.clone();
+
+AutoConfiguration? How to Enable or Disable a Certain Configuration?
+--------------------------------------------------------------------
+
+scans classpath(src/main/java (or) src/main/resources) for libraries and applies configuration accordingly on its own.
+Autoconfiguration works with the help of @Conditional annotations
+ => @ConditionalOnBean and,
+ => @ConditionalOnClass.
+
+@Conditional – annotations such as @ConditionalOnBean, @ConditionalOnWebApplication or
+@ConditionalOnClass allow to register a bean only when the condition is met.
+
+ To enable an autoconfiguration, just import correct starter dependency
+ To Disable
+
+ @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
+ public class MyConfiguration {
+ }
+
+Starter dependencies:
+---------------------
+These are maven templates which contain collection of transitive or interdependent dependencies.
+For ex:
+For a web based app, just add "spring-boot-starter-web" alone
+It transitively brings all the other required dependencies like spring-webmvc, spring-web, hibernate-validator,
+tomcat-embed-core, tomcat-embed-el, tomcat-embed-websocket, jackson-databind, jackson-datatype-jdk8, jackson-datatype-jsr310
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
 
 
 Diff b/w FAIL FAST and FAIL SAFE iterators:
@@ -513,6 +545,52 @@ Web based apps:
 Request
 Session
 Application
+
+Difference between @RequestMapping and @GetMapping?
+-----------------------------------------------------
+@GetMapping = @RequestMapping(method = { RequestMethod.GET }, consumes = {MediaType.Application/json}, produces = {MediaType.Application/json})
+
+
+Diff b/w comparable and comparator:
+------------------------------------
+Comparable
+-> Has only 1 method -> compareTo(Object o)
+-> Can only help in comparing single field
+
+Comparator
+-> Has compare(Object o1, Object o2) and other handy default methods and static methods which helps
+in ordering and chaining conditions or comparators like .thenComparing() etc..,
+-> Can compare multiple fields or chain multiple comparators
+
+
+Comparator has static methods like Comparator.comparing(), Comparator.comparingDouble() etc.., which intern returns Comparator object.
+
+Ex:
+(o1, o2) -> o1.getName().compareTo(o2.getName())
+Comparator.comparingDouble(Employee::getSalary)
+Comparator.comparing(Employee::getSalary)
+
+
+
+
+Stream interview questions:
+
+Maximum salaried employee:
+Optional<Employee> employee = employeesList.stream()
+    .max(Comparator.comparingDouble(Employee::getSalary));
+
+Largest number:
+numbersList.stream()
+    .mapToInt(num -> num)
+    .max()
+    .ifPresent(num -> sout("Largest num is "+ num);
+
+
+
+
+
+
+
 
 
 
