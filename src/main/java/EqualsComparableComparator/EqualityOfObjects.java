@@ -1,10 +1,15 @@
 package EqualsComparableComparator;
 
+import javax.swing.tree.RowMapper;
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /*
 * "==" is for (referential/address) equality. "equals" method checks for content Equality.
@@ -25,6 +30,15 @@ public class EqualityOfObjects {
 
         Integer c = Integer.valueOf(10);
         Integer d = Integer.valueOf(10);
+
+         List<Integer> list1=Stream.of(1,4,3,5).collect(Collectors.toList());
+         List<Integer> list2=Stream.of(1,4,3,5).collect(Collectors.toList());
+
+
+
+       Stream.of(list1, list2)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
 
         System.out.println(c == d);// true
         System.out.println(c.equals(d)); //true

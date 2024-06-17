@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class MaxOfFrequency {
     public static void main(String[] args) {
         String str = new Scanner(System.in).next();
-
+        getFrequencyOfAlphabets(str);
 
     }
 
@@ -21,7 +21,7 @@ public class MaxOfFrequency {
         for (int i = 0; i< str.length(); i++){
             int i1 = freq[str.charAt(i) - 'a'];
             if(i1 > 0){
-                System.out.println("count of "+ str.charAt(i) + "is :"+ i1);
+                System.out.println("count of "+ str.charAt(i) + " is : "+ i1);
             }
         }
     }

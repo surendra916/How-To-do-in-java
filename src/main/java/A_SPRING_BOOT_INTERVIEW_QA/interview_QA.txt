@@ -573,7 +573,94 @@ Comparator.comparing(Employee::getSalary)
 
 
 
-Stream interview questions:
+
+
+application.properties:
+------------------------
+spring.sql.init.mode = always
+It is used to control the execution of schema.sql files during application startup.
+
+
+JdbcTemplate:
+-------------
+
+methods:
+
+query() : SQL SELECT stmt map each row of ResultSet to a java object and return List<Object>
+
+queryForObject(): SQL SELECT stmt which returns a single row and maps that row to java obj.
+
+update(): modifies data such as UPDATE, DELETE, INSERT
+
+execute(): executes a sql stmt and optionally returns a result set.
+
+
+query():
+------------
+signature: query(sql, RowMapper<T> rowMapper)
+
+Custom RowMapper:
+-----------------
+public class EmployeeRowMapper implements RowMapper<Employee> {
+
+    @Override
+    public Employee mapRow(ResultSet rs, int rowNum){
+           return new Employee(
+                rs.getInt("Id"),
+                rs.getString("name")
+                ....
+                ....
+           );
+    }
+
+}
+
+Usage:
+----------
+@Autowired
+private JdbcTemplate jdbcTemplate;
+
+String sql = "SELECT * from employees";
+List<Object> employeeList = jdbcTemplate.query(sql, new EmployeeRowMapper());
+
+Instead of passing "new EmployeeRowMapper()" as a 2nd param (Anonymous inner class implementation):
+--------------------------------------------------------------------------------------------------
+we can go with jdbcTemplate.query(sql, new RowMapper<Employee>(){
+
+        @Override
+        public Employee mapRow(ResultSet rs, int rowNum){
+               return new Employee(
+                    rs.getInt("Id"),
+                    rs.getString("name")
+                    ....
+                    ....
+               );
+        }
+
+});
+
+Also,
+
+Using Lambda expression:
+--------------------------
+    jdbcTemplate.query(sql, (ResultSet rs, int rowNum) -> new Employee(rs.getInt("Id"),rs.getString("name")));
+
+jdbcTemplate.queryForObject("select * from book where id = ?", new BookMapper(), bookId);
+
+jdbcTemplate.update("insert into book(name, imageUr) values (?,?)", bookName, bookImageUrl);
+jdbcTemplate.update("update book set name = ? where id = ?",bookName, bookId);
+jdbcTemplate.update("DELETE book where id = ?",bookId);
+
+
+
+
+
+
+
+
+
+
+Streams:
 
 Maximum salaried employee:
 Optional<Employee> employee = employeesList.stream()
@@ -584,6 +671,288 @@ numbersList.stream()
     .mapToInt(num -> num)
     .max()
     .ifPresent(num -> sout("Largest num is "+ num);
+
+1) List<List<Integer>>, flatten it into a single List<Integer>
+List<List<Integer>> listOfLists = Arrays.asList(
+    Arrays.asList(1, 2, 3),
+    Arrays.asList(4, 5),
+    Arrays.asList(6, 7, 8)
+);
+
+List<Integer> flattenedList = listOfLists.stream()
+                                         .flatMap(List::stream)
+                                         .collect(Collectors.toList());
+
+System.out.println(flattenedList); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
+
+2) Count the occurrences of each word in a list and store the result in a Map<String, Long> using Java Streams.
+List<String> words = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
+
+          words.stream().collect(Collectors.groupingBy(Function::identity, Collectors.counting());
+
+3) Given a list of strings, convert each string to uppercase and filter out strings containing the letter 'a'.
+
+strList.stream()
+    .filter(str -> str.contains("a"))
+    .map(String::toUpperCase)
+    .collect(Collectors.toList());
+
+4) Sort a list of integers in descending order and select the top 3 numbers.
+
+list.stream()
+    .sorted(Comparator.reverseOrder())
+    .limit(3)
+    .collect(Collectors.toList());
+
+5) Highest salary from a list of Employee
+
+    employeeList.stream()
+        .max(Comparator.comparingDouble(Employee::getSalary))
+        .get();
+
+     employeeList.stream()
+        .sorted(Comparator.comparing(Employee::getSalary).reversed())
+        .findFirst()
+        .get();
+
+
+6) Maximum number
+    Stream.of(1,5,7,3)
+        .mapToInt(num -> num)
+        .max()
+        .getAsInt();
+
+        Like max(), we have min(), sum(), and summaryStatistics()
+
+     Stream.of(1,4,3,6,9)
+        .sorted(Comparator.reverseOrder())
+        .findFirst()
+        .get()
+
+ 7) 2nd Highest salaried Female in HR dept
+
+    employeeList.stream()
+        .filter(emp -> "Female".equals(emp.getGender()) && "HR".equals(emp.getDept()))
+
+        .max(Comparator.comparingDouble(Employee::getSalary)).get();
+                    (OR)
+        .sorted(Comparator.comparingDouble(Employee::getSalary).reversed()).skip(1).findFirst().get();
+
+8) Head count of Employees by gender
+
+    Map<String, Long> hc = employeeList.stream()
+        .collect(Collectors.groupingBy(Employee::getGender, Collectors.counting()))
+
+
+    employeeList.stream()
+        .collect(Collectors.groupingBy(Employee::getGender, Collectors.collectingAndThen(
+                Collectors.toList(),
+                list -> list.size()    // can also be written as List::size
+        )));
+
+9) Count of MALE and FEMALE employees in each department
+
+    employeeList.stream()
+             .collect(Collectors.groupingBy(Employee::getDept, Collectors.groupingBy(
+                    Employee::getGender,
+                    Collectors.counting()
+            ));
+
+            (OR)
+
+    employeeList.stream()
+            .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
+                Collectors.toList(),
+                list -> list.stream()
+                            .collect(Collectors.groupingBy(Employee::getGender, Collectors.counting())
+            )));
+
+10) 3rd highest salaried from each department
+
+    Map<String, Employee> thirdHighest = employeeList.stream()
+            .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
+                    Collectors.toList(),
+                    list -> list.stream()
+                            .sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
+                            .skip(2)
+                            .findFirst().get()
+            )));
+
+11) 3rd, 4th and 5th highest salaried from each dept
+
+    employeeList.stream()
+            .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
+                    Collectors.toList(),
+                    list -> list.stream()
+                                .sorted(Comparator.comparing(Employee::getSalary).revered())
+                                .skip(2)
+                                .limit(3)
+                                .collect(Collectors.toList());
+            )));
+
+
+
+13)  Average salary of employees
+
+       IntStream.range(1,10)
+                .average(); // sum(), min(), max(), distinct(), also summaryStatistics()
+
+    employeeList.stream()
+            .collect(Collectors.averagingDouble(Employee::getSalary));
+
+14) Primitive Stream to Wrapper Stream
+
+    IntStream.range(1,10)
+                .boxed() // Stream<Integer>
+                .collect(Collectors.toList());
+
+
+15) Avg salary of employees in HR dept
+
+    employeeList.stream()
+                .filter(emp -> "Hr".equals(emp.getDept()))
+                .collect(Collectors.averagingDouble(Employee::getSalary));
+
+ 12) Maximum salaried employee in Each Department
+
+             employeeList.stream()
+                     .collect(Collectors.groupingBy(Employee::getDept, Collectors.maxBy(Comparator.comparing(Employee::getSalary));
+
+                     (OR)
+             employeeList.stream()
+                     .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
+                                 Collectors.toList(),
+                                 list -> list.stream().max(Comparator.comparing(Employee::getSalary))
+                     )));
+
+16) Avg Sal of emp in each dept
+
+       employeeList.stream()
+                   .collect(Collectors.groupingBy(Employee::getDept, Collectors.averagingDouble(Employee::getSalary)));
+
+       employeeList.stream()
+                    .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
+                            Collectors.toList(),
+                            list -> list.stream()
+                                        .collect(Collectors.averagingDouble(Employee::getSalary))
+                                                (or)
+                                    list.stream()
+                                        .mapToDouble(Employee::getSalary)
+                                        .average()
+                    )))
+
+
+
+ 17) Average salary of Female employees in each dept
+
+               employeeList.stream()
+                            .filter(emp -> emp.getGender().equals("F"))
+                            .collect(Collectors.groupingBy(Employee::getDept, Collectors.averagingDouble(Employee::getSalary));
+
+               employeeList.stream()
+                            .filter(emp -> "F".equals(emp.getGender()))
+                            .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
+                                           Collectors.toList(),
+                                           list -> list.stream()
+                                                    .collect(Collectors.averagingDouble(Employee::getSalary))
+                                                            (or)
+                                                    list.stream()
+                                                        .mapToDouble(Employee::getSalary)
+                                                        .average()
+                            )))
+
+
+  18) Average salary of Male and Female employees in each dept
+
+        employeeList.stream()
+                    .collect(Collectors.groupingBy(Employee::getDept,
+                                    Collectors.groupingBy(Employee::getGender, Collectors.averagingDouble(Employee::salary))
+                    ))
+
+        employeeList.stream()
+                    .collect(Collectors.groupingBy(Employee::getDept, Collectors.collectingAndThen(
+                            Collectors.toList(),
+                            list -> list.stream()
+                                        .collect(Collectors.groupingBy(Employee::getGender, Collectors.averagingDouble(Employee::getSalary))
+                    )))
+
+    19) Find the oldest employee's name
+
+           employeesList.stream()
+                        .sorted(Comparator.comparingInt(Employee::getAge).reversed())
+                        .findFirst()
+                        .get()
+                        .getName();
+
+     20) Find the highest averaged salaried department
+
+        Map<String, Double> emps = employeeList.stream()
+                    .collect(Collector.groupingBy(Employee::getDept, Collectors.maxBy(Collectors.averagingDouble(Employee::getSalary)));
+
+        emps.values().stream().flatMap(list -> list.stream().max(Comparator.reverseOrder()).get()
+
+
+
+Spring data jpa Relationships:
+-----------------------------
+oneToMany:
+--------------
+
+Invoice, LineItem
+
+The table in which we will have the "foreign key" is the "owning side".
+
+Invoice:
+---------
+@OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+private List<LineItem> lineItems;
+
+LineItem:
+--------
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "invoice_urn")
+private Invoice invoice;
+
+
+@ManyToMany:
+------------
+
+
+
+
+
+Access Modifiers:
+-----------------
+
+Public: Accessible anywhere.
+private : Within class.
+protected: Accessible within PACKAGE and outside package also through SUBCLASSES.
+default: Accessible only within package but not through SUBCLASSES.
+
+
+
+Design Patterns in java:
+------------------------
+
+Creation DP's:
+--------------
+
+
+
+Structural DP's:
+---------------
+
+
+
+
+
+
+
+Diamond Problem in java 8:
+-------------------------
+
+
+
 
 
 
