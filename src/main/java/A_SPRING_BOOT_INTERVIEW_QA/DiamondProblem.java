@@ -23,7 +23,7 @@ public class DiamondProblem implements i3, i2{
 
     @Override
     public void eat() {
-
+        System.out.println();
     }
 
     public static void main(String[] args) {
