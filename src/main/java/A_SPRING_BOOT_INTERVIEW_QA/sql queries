@@ -1,0 +1,79 @@
+
+
+find max salaried employee
+1)
+select * from employee
+where salary = (select max(salary) from employee)
+
+2)
+select * from employee
+order by salary desc
+limit 1 offset 1
+
+
+Find nth highest salaried employees
+
+1)
+With RankedEmployee as (
+select *, ROW_NUMBER() over (order by salary desc) as row_num
+from employees)
+
+select * from RankedEmployee
+where row_num = 2;
+
+2)
+with RankedEmployee as(
+select *, DENSE_RANK() over (order by salary desc) as rank
+from employee)
+
+select * from RankedEmployee
+where rank = 2;
+
+
+3) Max salaried from IT dept
+
+select * from employees
+where salary = (
+select max(salary) from employees
+)
+
+Nth highest salaried in IT dept
+
+With RankedEmployee as
+(
+select *, DENSE_RANK() over (partition by dept order by salary desc) as rank
+from employees
+where dept = 'IT'
+)
+
+select * from RankedEmployee
+where rank = 2
+
+
+Max salaried from EACH DEPARTMENT:
+
+With RankedEmp as
+(
+select *, DENSE_RANK() over (partition by dept_id order by salary desc) as rank
+from employee
+)
+
+select * from employees where rank = 1;
+
+
+Sales Data by month :
+
+select customer_id,
+SUM(
+CASE
+    WHEN EXTRACT(MONTH from sale_date) = 1
+        THEN amount
+    ELSE 0
+END),
+SUM(
+CASE
+    WHEN EXTRACT(MONTH from sale_date) = 2
+        THEN amount
+    ELSE 0
+END
+)

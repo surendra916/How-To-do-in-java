@@ -1,9 +1,20 @@
 package org.example;
 
+
 public class Employee{
     private Integer empId;
     private Integer age;
     private String name;
+
+    private String mobileNumber;
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
 
     @Override
     public String toString() {

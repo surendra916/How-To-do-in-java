@@ -16,7 +16,7 @@ public class CheckNumericBasedProgram {
 
     public static void main(String[] args) {
         //System.out.println("Is Prime : "+checkIfPrime(2));
-        //findCommonElementsFromTwoArrays();
+        findCommonElementsFromTwoArrays();
         System.out.println(findLongestString(new String[]{ "abc", "wwww", "eeeeee", "iiiiiiiiii"}));
         System.out.println("Sum is : "+sumOfFirstTenPrimeNumbers());
     }
@@ -39,10 +39,11 @@ public class CheckNumericBasedProgram {
     public static void findCommonElementsFromTwoArrays(){
         int[] arr1 = {1, 5, 7, 2, 8};
         int[] arr2 = {3, 4, 5, 6, 8};
-        Arrays.stream(arr1)
-                .filter(num -> Arrays.stream(arr2).anyMatch(n -> n == num))
+        List<Integer> collect = Arrays.stream(arr1)
+                .filter(num -> Arrays.stream(arr2).boxed().anyMatch(n -> n.equals(num)))
                 .boxed()
                 .collect(Collectors.toList());
+        System.out.println(collect);
     }
 
     public static int[] reverseArray(int[] arr){

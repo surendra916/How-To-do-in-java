@@ -1,0 +1,235 @@
+@Input() name: String;
+
+<component-A [input]="name" (messageEvent) = "updateValue($event)"> </component-A>
+
+@Output() messageEvent = new EventEmitter<>();
+
+this.messageEvent.emit("Hello dude")
+
+Data passing b/w Unrelated components
+
+RXJX:
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjx';
+
+@Injectable(
+    providedIn: 'root'
+)
+export class DataLayerService{
+
+    private messageSource = new Subject<string>();
+    messageObservable = this.messageSource.asObservable();
+
+
+    sendMessage(message: string){
+        this.messageSource.next(message);
+    }
+
+}
+
+
+export class Sender {
+
+    constructor(DataService ds){
+    }
+
+    sendMessage(message: string){
+        this.ds.sendMessage(message);
+    }
+
+}
+
+export class Receiver implements OnInit{
+
+    constructor(DataService ds){
+    }
+
+    ngOnInit(){
+        this.ds.messageObservable.subscribe(msg =>{
+            console.log(msg)
+        })
+    }
+
+}
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    const isAuthenticated = this.authService.isLoggedIn(); // Check user authentication status
+    if (isAuthenticated) {
+      return true; // Allow navigation if authenticated
+    } else {
+      this.router.navigate(['/login']); // Redirect to login page if not authenticated
+      return false; // Prevent navigation
+    }
+  }
+}
+
+
+const routes: Routes = [
+
+
+{ path: '', component : 'HomeComponent', canActivate: [AuthGuard]}
+
+{
+    path: 'child',
+    canActivateChild: [AuthGuard],
+    loadChildren: () => import("./child/jhj")
+}
+
+
+{
+    path: 'lazy',
+    canLoad: '',
+}
+
+
+]
+
+
+
+VAR , LET and CONST:
+----------------------
+var is hoisted and initialized as "undefined".
+let and const are hoisted but not initialized, leading to a "temporal dead zone."
+
+
+Promise:
+-------------
+const fetchData = new Promise((resolve, reject) => {
+    setTimeOut(() => resolve("Resolved and success"), 1000);
+});
+
+fetchData.then(data => console.log(data))
+
+Promise using Async/Await:
+----------------------------
+
+async function fetchDataFromServer(){
+    const data = await fetchData;
+    console.log(data)
+}
+
+
+Closures:
+--------
+
+function getDataFunction(){
+
+    let a = 10;
+    return function() {
+        counter++;
+        console.log(counter)
+    }
+
+}
+
+const dataFn =  getDataFunction();
+
+dataFn(); 1
+dataFn(); 2
+dataFn(); 3
+
+Explanation:
+----------------
+The returned function forms a closure that "remembers" the variable count, allowing it to increment and access the variable across multiple calls.
+
+function multiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = multiplier(2);
+const triple = multiplier(3);
+
+console.log(double(5)); // Output: 10
+console.log(triple(5)); // Output: 15
+
+
+
+@Component({
+    selector: '',
+    templateUrl: '',
+    styleUrls: ''
+})
+
+
+
+
+setTimeOut:
+--------------
+const timeOut = setTimeout(() => console.log(`Hai ${name}`), 3000, "john");
+executed after 3 seconds as Hai John.
+clearTimeout(timeOut)
+
+setInterval:
+------------
+let count = 0;
+const intervalId = setInterval(() =>{
+    console.log(count)
+    count++;
+    if(count === 5){
+        clearInterval(intervalId);
+    }
+}, 2000)
+
+executes at every 2 seconds
+
+
+difference is DELAY and INTERVAL
+
+
+Pipes in Angular:
+------------------
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+    name: reverse
+})
+export class ReversePipe implements PipeTransform{
+    transform(name: string){
+        return name.split('').reverse().join('');
+    }
+}
+
+
+Directive in angular:
+
+// number-color.directive.ts
+import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+
+@Directive({
+  selector: '[appNumberColor]'
+})
+export class NumberColorDirective implements OnChanges {
+  @Input('appNumberColor') number!: number; // Input to accept the number
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    // Check if the number input has changed
+    if (changes['number']) {
+      this.updateTextColor();
+    }
+  }
+
+  private updateTextColor() {
+    // Set text color based on whether the number is negative
+    const color = this.number < 0 ? 'red' : 'black';
+    this.renderer.setStyle(this.el.nativeElement, 'color', color);
+  }
+}
+
+
+
+

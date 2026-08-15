@@ -1,8 +1,69 @@
+Shallow Copy vs Deep copy:
+--------------------------
+
+class Person implements Cloneable{
+
+    String name;
+    Address address;
+
+    public Person(String name, Address address){
+        this.name = name;
+        this.address = address;
+    }
+
+}
+
+
+Immutable classes in java:
+--------------------------
+-- String and all other wrapper classes.
+-- Once the state is initialized, Its state is immutable/can't be changed So we can use in multi-threading envs without additional synchronization
+-- Used as a key in Map
+-- Its state is predictable because its immutable and can also be used in caching.
+
+Creational Design patterns :
+----------------------------
+Singleton, Factory and Builder, Prototype(clone() if new Object creation is costly)
+
+Factory:
+=========
+Will have a factory class with factory methods
+We have to create an object for that factory class and call those factory methods.
+Ex:
+Connection conn = DriverManager.getConnection(url, username, password);
+Calendar.getInstance();
+
+
+// ShapeFactory.java
+public class ShapeFactory {
+    // Use getShape method to get object of type Shape
+    public Shape getShape(String shapeType) {
+        if (shapeType == null) {
+            return null;
+        }
+        if (shapeType.equalsIgnoreCase("CIRCLE")) {
+            return new Circle(); // Circle(C) implements Shape(I)
+        } else if (shapeType.equalsIgnoreCase("RECTANGLE")) {
+            return new Rectangle(); //  Rectangle(C) implements Shape(I)
+        } else if (shapeType.equalsIgnoreCase("SQUARE")) {
+            return new Square(); //  Square(C) implements Shape(I)
+        }
+        return null;
+    }
+}
+
+
+
+
 RUNNING JAVA APP FROM CLI:
 java -jar sample.jar -Dspring.profiles.active=QA
 
 HOW TO PACKAGE JAR :
 We can package either in to JAR or WAR by mentioning as below
+
+Maven Phases:
+============
+clean, compile, test, verify, package, install, deploy
 
 <packaging>jar/war</packaging>
 
@@ -20,7 +81,7 @@ Ex:
 
 
 ACTUATOR & ITS USES:
-Actuation gives us REST like response without actually adding any endpoints in our app
+Actuator gives us REST like response without actually adding any endpoints in our app
 
 Just add "spring-boot-starter-actuator" to POM file like below
 <dependency>
@@ -39,7 +100,7 @@ Here we have multiple options to specify, below are some of them
 /env -> returns listing properties in app
 /health -> returns health of the app
 /auditevent -> returns autoconfiguration related candidates
-/beans -> Returns list of all spring beans in our app
+/beans -> Returns list of all spring beans in our app```
 /trace -> trace
 
 
@@ -57,15 +118,40 @@ At endpoint level:
 
 To Enable CORS for whole application:
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 @Configuration
-@EnableWebMvc
-public class CorsConfig implements WebMvcCon figurer{
-    @override
-    public void addCors(CorsRegistry registry){
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedMethods("GET", "POST");
+                .allowedOrigins("http://localhost:8080") // Replace with your frontend URL or '*' to allow all origins
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 }
+
+To directly apply on a endpoint
+-------------------------------
+@CrossOrigin(origins = "http://localhost:8080")
+@GetMapping("/api/data")
+public String getData() {
+    return "Data from backend";
+}
+
+To enable cors via app.properties:
+---------------------------------
+# CORS Configuration
+spring.mvc.cors.allowed-origins=http://localhost:8080
+spring.mvc.cors.allowed-methods=GET,POST,PUT,DELETE
+spring.mvc.cors.allowed-headers=*
+spring.mvc.cors.allow-credentials=true
+spring.mvc.cors.max-age=3600
 
 
 DIFF B/W @CONTROLLER & @RESTCONTROLLER
@@ -204,7 +290,7 @@ INJECT Dynamic bean name:
 
 In App.properties:
 ------------------
-paymentBeanName= phonepe
+paymentBeanName = phonepe
 
 At class level use
 
@@ -288,6 +374,8 @@ VALIDATION USING @VALID:
 @Min(value = 10)
 @Max(value = 30)
 @Pattern(regExp="", message = "Invalid phone number")
+@Size(min = 2, message = "min is 2")
+@Past -> for dates accepts only dates in the past
 
 SPRING BOOT ADVANTAGES:
 -----------------------
@@ -408,7 +496,7 @@ STEREOTYPE ANNOTATIONS:
 
 
 DEPENDENCY INJECTION(DI):
-------------------------
+-------------------------
 
 Key feature of Spring Framework.
 DI is a Design pattern in spring framework which helps in achieving loose coupling between classes.
@@ -425,7 +513,7 @@ Private UserService userService;
 @Autowired
 public void setUserService(UserService userService)
 {
-    this.userService = userService();
+    this.userService = userService;
 }
 
 // Constructor DI
@@ -521,7 +609,7 @@ Singleton: // Usage: @Scope("singleton")
     }
 
     In MainApp.java:
-    ---------------
+    ----------------
     @SpringBootApplication
     public class MainApp
     {
@@ -624,7 +712,7 @@ String sql = "SELECT * from employees";
 List<Object> employeeList = jdbcTemplate.query(sql, new EmployeeRowMapper());
 
 Instead of passing "new EmployeeRowMapper()" as a 2nd param (Anonymous inner class implementation):
---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
 we can go with jdbcTemplate.query(sql, new RowMapper<Employee>(){
 
         @Override
@@ -666,6 +754,8 @@ Maximum salaried employee:
 Optional<Employee> employee = employeesList.stream()
     .max(Comparator.comparingDouble(Employee::getSalary));
 
+
+
 Largest number:
 numbersList.stream()
     .mapToInt(num -> num)
@@ -685,10 +775,17 @@ List<Integer> flattenedList = listOfLists.stream()
 
 System.out.println(flattenedList); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
 
-2) Count the occurrences of each word in a list and store the result in a Map<String, Long> using Java Streams.
+2)
+ i) Count the occurrences of each word in a list and store the result in a Map<String, Long> using Java Streams.
 List<String> words = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
 
           words.stream().collect(Collectors.groupingBy(Function::identity, Collectors.counting());
+  ii) max repeated word
+
+  Map<String, Long> countMap = words.stream().collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+
+  Optional<Map.Entry<String, Long>> maxed = countMap.entrySet().stream().max(Map.Entry.comparingByValue())
+
 
 3) Given a list of strings, convert each string to uppercase and filter out strings containing the letter 'a'.
 
@@ -777,6 +874,10 @@ list.stream()
                             .skip(2)
                             .findFirst().get()
             )));
+
+            ************************8) Highest salaried from each dept
+
+            elist.stream().collect(Collector.groupingBy(Employee::getDept, Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)))
 
 11) 3rd, 4th and 5th highest salaried from each dept
 
@@ -884,6 +985,8 @@ list.stream()
                         .get()
                         .getName();
 
+           employeesList.stream().max(Comparator.comparingInt(Employee::getAge)
+
      20) Find the highest averaged salaried department
 
         Map<String, Double> emps = employeeList.stream()
@@ -916,10 +1019,21 @@ private Invoice invoice;
 
 @ManyToMany:
 ------------
+Book:
+
+@ManyToMany
+@JoinTable(
+    name = "book_author",
+    joinColumns = @JoinColumn("book_id"),
+    inverseJoinColumns = @JoinColumn("author_id")
+)
+Set<Author> authors = new Hashset<>();
 
 
+Author:
 
-
+@ManyToMany(mappedBy = "authors")
+Set<Book> books = new HashSet<>();
 
 Access Modifiers:
 -----------------
@@ -953,14 +1067,531 @@ Diamond Problem in java 8:
 
 
 
+SingleTon Class creation:
+--------------------------
+public class SingletonClass{
+
+    private static SingletonClass singletonInstance = null;
+
+    public static SingletonClass getInstance(){
+        if(singletonInstance == null){
+            singletonInstance = new SingletonClass();
+        }
+        return singletonInstance;
+    }
+
+}
+
+Usage:
+--------
+
+SingletonClass singletonClass = singletonClass.getInstance();
+
+Breaking the singleton design pattern:
+--------------------------------------
+
+Using Reflection and Object cloning.
+
+public class Singleton implements Cloneable {
+    private static Singleton instance;
+
+    private Singleton() {
+        // Private constructor to prevent instantiation
+    }
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Cloning not allowed in Singleton");
+    }
+
+    public static void main(String[] args){
+        Singleton singleton1 = Singleton.getInstance();
+        Singleton singleton2 = (Singleton) singleton1.clone(); // If we override clone() method and throw Exception then it's not possible otherwise we can clone it
+
+    }
+}
+
+Using Constructor:
+--------------------
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+public class SingletonBreaker {
+    public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Singleton instance1 = Singleton.getInstance();
+
+        // Use reflection to get the Singleton class's constructor
+        Constructor<Singleton> constructor = Singleton.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+
+        // Create a new instance using reflection
+        Singleton instance2 = constructor.newInstance();
+
+        System.out.println("Instance 1: " + instance1.hashCode());
+        System.out.println("Instance 2: " + instance2.hashCode());
+    }
+}
+
+
+We can actually break it with above code
+So In private constructor, check for the nullability like below
+
+Using multithreading also we can break
+
+public class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {
+        // Private constructor to prevent instantiation
+        if (instance != null) {
+            throw new IllegalStateException("Singleton instance already exists");
+        }
+        System.out.println("Singleton instance created");
+    }
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+
+
+To make SingletonClass synchronized just add the synchronized block
+
+public static synchronized Singleton getInstance() { // add synchronized here
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+}
+
+(or)
+Double check locking:
+-------------------------
+private static volatile Singleton instance;
+public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized(SingletonDemo.class)
+            {
+                    if (instance == null) {
+                        instance = new Singleton();
+                    }
+                    return instance;
+            }
+
+
+        }
+}
+
+
+
+Response Status for REST APIs:
+-------------------------------
+
+200 - Success
+201 - Created
+204 - NO CONTENT
+400 - (Bad Request) Ex: Validation Error
+401 - Unauthorized
+404 - Resource not found
+500 - Server error
+
+Error Handling:
+----------------
+
+public class ErrorResponse {
+    private String message;
+    private String details;
+
+    // constructors, getters, and setters
+}
+
+// For all exceptions
+---------------------
+@ControllerAdvice
+public class GlobalExceptionHandler{
+
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<ErrorResponse> handleException(Exception.class){
+        ErrorResponse err = new ErrorResponse("INTERNAL ERROR", "SERVER ERROR");
+        return new ResponseEntity<ErrorResponse>(err, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+}
+
+// Using ResponseEntityExceptionHandler with custom exceptions:
+----------------------------------------------------------------
+
+Custom Exception:
+-----------------
+@Data
+public class UserNotFoundException extends RuntimeException{
+
+    public UserNotFoundException(String message){
+        super(message);
+    }
+}
+
+
+@ControllerAdvice
+public class GlobalRespEntityExceptionHandler extends ResponseEntityExceptionHandler{
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleException(UserNotFoundException userNotFoundException, WebRequest req){
+            ErrorResponse err = new ErrorResponse("INTERNAL ERROR", "SERVER ERROR");
+            return new ResponseEntity<ErrorResponse>(err, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+}
+
+
+
+RequestBody Validation:
+------------------------
+dependency:
+------------
+spring-boot-starter-validation
+
+User Dto:
+---------
+
+public class User{
+
+    @Size(min = 2, message = "Name should be atleast 2 characters long")
+    private String username;
+
+    @Past
+    private LocalDate dob;
+}
+
+@PostMapping("/save")
+public User create(@Valid @RequestBody User user){}
+
+
+@ControllerAdvice
+public class GlobalRespEntityExceptionHandler extends ResponseEntityExceptionHandler{
+
+    protected ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, HttpHeader headers, HttpStatusCode ){
+        return
+    }
+
+}
+
+
+
+Calling a Stored Procedure in Spring boot:
+------------------------------------------
+
+@Entity
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery( name = "some-name", procedureName = "pName")
+})
+public class SomeEntity{
+
+    @Id
+    @GeneratedValue
+    private Long id;
+}
+
+And, In a repo
+
+public interface procedureRepository extends JpaRepository<SomeEntity, Long> {
+
+    @Procedure(procedureName = "pName")
+    String callStoredProcedureWithParams(String docNum, int id);
+
+}
+
+
+Executing a Native Query:
+-------------------------
+
+
+@Query(value = "select * from Employee where id = :emp_id")
+public List<Employee> getEmployees(@Param(emp_id) String emp_id);
+
+
+
+How to improve performance of a Spring boot app:
+-------------------------------------------------
+
+Cache the static data
+Add indexes to DB tables
+Go with Asynchronous approach based on the requirement
+@DynamicUpdate and @DynamicInsert:
+----------------------------------
+useful in scenarios where entities have many columns,
+and only a subset of them is typically populated or updated
+
+-> By default, Hibernate generates INSERT statements that include all columns defined in the entity,
+    regardless of whether their values are null.
+-> These annotations will include the non-null columns only during insert and update.
+
+
+
+Reverse a String in Java:
+--------------------------
+String str = "surendra";
+char[] chars = str.toCharArray();
+int len = chars.length;
+for( int i = 0; i < len / 2; i++){
+    char temp = chars[i];
+    chars[i] = chars[len - i - 1];
+    chars[len - i - 1] = temp;
+}
+
+Words count in java (or) Frequency of words in a string:
+--------------------------------------------------------
+
+String str = "thank god this is friday";
+Streams:
+---------
+Map<String, Integer> frequency = Arrays.stream(str.split(" "))
+      .collect(Collectors.groupingBy(Function::identity, Collectors.counting()));
+
+Using HashMap:
+--------------
+
+ String str = "kbk ohikhkoihib ioghi boib";
+
+ List<String> list = Arrays.stream(str.split(" "))
+       .collect(Collectors.toList());
+ HashMap<String,Integer> hmap = new HashMap<>();
+ for(String s : list){
+      hmap.put(s, hmap.getOrDefault(s, 0) + 1);
+ }
+
+ hmap.forEach((key, value) -> Sout(key +" = " + value);
+
+
+Frequency of each character in a string:
+----------------------------------------
+
+String str = "Surendra";
+Map<String, Long> collect = Arrays.stream(str.split(""))
+                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+
+System.out.println(collect);
+
+Map<Character, Long> map = new HashMap<>();
+
+for(Character c : str.toCharArray()){
+    map.put(c, map.getOrDefault(c, 0) + 1);
+}
+
+
+Absolute differenced pairs:
+----------------------------
+
+List<Integer> list = new ArrayList<>(List.of(5,7,4, 8));
+        Collections.sort(list);
+        int diff = Math.abs(list.get(0) - list.get(1));
+        Map<List<Integer>, Integer> pairsMap = new HashMap<>(list.size());
+        for(int i = 0; i < list.size() - 1; i++){
+            int tempDiff = Math.abs(list.get(i) - list.get(i+1));
+            if(tempDiff < diff){
+                diff = tempDiff;
+            }
+            pairsMap.put(List.of(list.get(i) , list.get(i+1)), tempDiff);
+
+        }
+        System.out.println("Minimum difference is "+ diff + " and its pairs are : ");
+        int finalDiff = diff;
+        pairsMap.forEach((listt, value) -> {
+            if(value.equals(finalDiff)){
+                System.out.println(listt);
+            }
+        });
+
+
+Get Properties of a class in java:
+----------------------------------
+
+Class<?> classInstance = YourClassName.class; (or) Class.forName()
+Field[] fields = classInstance.getDeclaredFields();
+List<String> props = new ArrayList<>();
+for(Field f : fields){
+    props.add(f.getName());  // you can also have field.getType(), field.getModifiers()
+}
+
+
+
+SingleTonDesignPattern:
+-----------------------
+
+
+public class SingleTonDesignPatternDemo implements Cloneable, Serializable{
+
+    private static SingleTonDesignPatternDemo singleTonDesignPatternDemo;
+
+    private SingleTonDesignPatternDemo(){  // Prevent outside classes to create objects
+        if(singleTonDesignPatternDemo != null){ // Prevents Reflection API in   creating object
+            throw new RunTimeException("Action not allowed");
+        }
+    }
+
+    @Override
+    protected Object clone(){
+        throw new CloneNotSupportedException();
+    }
+
+    public static SingleTonDesignPatternDemo getSingleTonInstance(){
+        if(singleTonDesignPatternDemo == null){
+            singleTonDesignPatternDemo = new SingleTonDesignPatternDemo();
+        }
+        return singleTonDesignPatternDemo;
+    }
+
+    // During Deserialization of Singleton objects
+    private SingleTonDesignPatternDemo readResolve(){
+        return singleTonDesignPatternDemo;
+    }
+
+}
+
+
+
+Spring AOP:
+------------
+
+Spring AOP to print method execution times
+
+
+@Aspect
+@Component
+public class AspectExample{
+
+        @Around("execution("package-name")")
+        public Object printMethodExecution(JointPoint jointPoint){
+            long startTime = System.currentTimeMillis();
+            Object proceed = jointPoint.proceed();
+            long executionTime = System.currentTimeMillis() - startTime;
+            log.info(jointPoint.getSignature());
+            return proceed;
+        }
+
+}
+
+=============================================================================
+
+
+Coding question:
+
+max frequency of a character in a String
+-------------------------------------------
+
+
+String str = "india";
+
+LinkedHashMap<String, Long> linkedHashMap = Stream.of(str.split(""))
+    .collect(Collectors.groupingBy(
+    Function.identity()
+    ,LinkedHashMap::new
+    ,Collectors.counting()));
+
+    sout(linkedHasMap); // {i=2, n=1, d=1, a=1} i n d i a
+
+    Max repeated/occurred is I which is 2 times
+
+    1)
+    linkedHashMap.entrySet()
+        .stream()
+        .max(Map.Entry.comparingByValue())
+        .ifPresent(max -> sout("Max repeated/occurred is : "+max));
+
+    linkedHashMap.entrySet()
+        .stream()
+        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+        .findFirst()
+        .ifPresent(max -> sout("Max repeated/occurred is : "+max));
+
+    2) First non repeating character ( i n d i a) is n
+
+    linkedHasMap.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByValue())
+                    .findFirst()
+                    .ifPresent(System.out::println);
+
+     3) 2nd non repeating character
+    linkedHasMap.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByValue())
+                    .skip(1)
+                    .findFirst()
+                    .ifPresent(System.out::println);
+
+    4) Longest Substring Without Repeating Characters
+
+    String str = "surendra";
+    List<String> substringList = new ArrayList<>();
+    int len = str.length();
+    for(int i = 0; i < len; i++){
+        for(int j = i + 1; j <= len; j++){
+            substringList.add(str.substr(i, j));
+        }
+    }
+
+    substringList.sort((o1, o2) -> Integer.compare(o2.length(), o1.length())); // 
+
+    for(String s: substringList){
+        if(Stream.of(s.split(""))
+            .collect(Collectors.groupingBy(Function.identity), LinkedHashMap::new, Collectors.counting())
+            .entrySet()
+            .stream()
+            .noneMatch(entry -> entry.getValue() > 1)){
+                sout("Longest substring without ");
+            }
+    }
+
+
+     // Find all possible subtrings
+     // Find all permutations of a string
+    // Longest Palindromic Substring
+    //  Check if Two Strings are Anagrams
+    //  String Compression
+       Problem: Given a string, compress it using the counts of repeated characters.
+       If the compressed string is not smaller than the original, return the original string.
+
+
+pointcut expression
+
+@Before(pointcut = "execution (* com.demo.misc.controllers.*.*(..))")
+@Around()
 
 
 
 
+Access Modifiers:
+-----------------
+
+Public: Accessible anywhere.
+private : Within class.
+protected: Accessible within PACKAGE and outside package also through SUBCLASSES.
+default: Accessible only within package but not through SUBCLASSES.
 
 
 
+Invoice:
+---------
+@OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
+private List<LineItem> lineItems;
 
+LineItem:
+--------
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "invoice_urn")
+private Invoice invoice;
 
 
 
